@@ -1,0 +1,38 @@
+.timer-holder {
+}
+
+#gopi {
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  /*gap: 70px;*/
+}
+
+#gopi {
+  font-size: 30px;
+  color: red;
+}
+
+#lable_timer_count {
+  /*position: relative;*/
+  font-size: 34px;
+}
+
+.buttons {
+}
+
+.sd {
+}
+
+div {
+}
+
