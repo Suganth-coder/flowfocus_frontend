@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./dist/loading-bar.min.css">
+    <style type="text/css">
+        .ldBar path.mainline {
+            stroke-width: 5;
+            stroke: #09f;
+            stroke-linecap: round;
+        }
+        
+        .ldBar path.baseline {
+            stroke-width: 6;
+            stroke: #d5e6fa;
+            stroke-linecap: round;
+            filter: url(#custom-shadow);
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Circle -->
+    <div id="bar1" data-value="0" data-preset="circle" style="width: 25%; height: 25%;" data-duration="10" data-transition-in="0.1">
+    </div><br>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./dist/loading-bar.min.js"></script>
+    <script>
+        // Manual Bar Coding
+        var bar1 = new ldBar("#bar1");
+        bar1.set(100);
+    </script>
+</body>
+
+</html>
