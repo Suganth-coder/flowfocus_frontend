@@ -16,8 +16,21 @@
         .ldBar path.baseline {
             stroke-width: 6;
             stroke: #d5e6fa;
+            box-shadow: 0px 5px 25px #00000040;
             stroke-linecap: round;
             filter: url(#custom-shadow);
+        }
+        
+        .ldBar-label {
+            color: #09f;
+            font-family: 'varela round';
+            display: none;
+        }
+        
+        .timer {
+            font-size: 40px;
+            position: absolute;
+            transform: translate(100px, 150px);
         }
     </style>
     <title>Document</title>
@@ -25,17 +38,28 @@
 
 <body>
 
+
+
     <!-- Circle -->
-    <div id="bar1" data-value="0" data-preset="circle" style="width: 25%; height: 25%;" data-duration="10" data-transition-in="0.1">
+    <div id="bar1" data-preset="circle" style="width: 350px; height: 350px;" data-duration="60" data-transition-in="1" data-fill-dir="ltr">
+        <div class="timer"></div>
     </div><br>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <button class="start">start</button>
+    <button class="pause">pause</button>
+    <button class="continue">continue</button>
+
+
     <script src="./dist/loading-bar.min.js"></script>
-    <script>
-        // Manual Bar Coding
-        var bar1 = new ldBar("#bar1");
-        bar1.set(100);
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+    <script src="./clock/dist/ez.countimer.min.js"></script>
+    <script src="./circle.js"></script>
+
+
 </body>
 
 </html>

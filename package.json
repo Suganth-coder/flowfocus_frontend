@@ -1,0 +1,22 @@
+{
+  "name": "fun",
+  "version": "1.0.0",
+  "description": "This is just for exploring and for fun",
+  "main": "circle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suganth-coder/flowfocus_frontend.git"
+  },
+  "author": "Suganth-coder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Suganth-coder/flowfocus_frontend/issues"
+  },
+  "homepage": "https://github.com/Suganth-coder/flowfocus_frontend#readme",
+  "dependencies": {
+    "progressbar.js": "^1.1.1"
+  }
+}
