@@ -1,5 +1,16 @@
+#clock_container {
+    height: 500px;
+    border: 2px solid red;
+}
+
 #container {
     margin: 20px;
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
+}
+
+#runner {
+    font-size: 50px;
+    position: absolute;
+    translate: 150px -260px;
 }
