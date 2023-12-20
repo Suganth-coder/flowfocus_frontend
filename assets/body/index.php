@@ -34,7 +34,15 @@
                 <div id="container"></div>
                 <div id="runner"></div>
 
+                <!-- start div -->
                 <div class="start-div"><img class="start" src="./assets/image/start.svg" /></div>
+
+                <!-- pause/reset div -->
+                <div class="d-inline-flex flex-row pause-reset d-none">
+                    <div class="p-2 pause" style="width: 100px;" ><img class="group pause-continue-img" src="./assets/image/pause.svg" /></div>
+                    <div class="p-2 reset" style="width: 100px;"><img class="group" src="./assets/image/reset.svg" /></div>
+                </div>
+
             </div>
         </div>
     </section>

@@ -7,9 +7,14 @@
 #runner {
     font-size: 60px;
     position: absolute;
-    translate: 0px -50px;
+    translate: 0px -80px;
 }
 
 .start {
     translate: 0px -160px;
+}
+
+.pause-reset {
+    position: absolute;
+    translate: 0px 60px;
 }

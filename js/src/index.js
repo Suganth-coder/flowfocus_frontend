@@ -1,11 +1,10 @@
 $(document).ready(function() {
 
-    $('.continue').hide();
     var ProgressBar = require('progressbar.js');
     var bar = new ProgressBar.Circle("#container", {
         strokeWidth: 11,
         easing: 'easeInOut',
-        duration: 3600,
+        duration: 600000,
         color: "#418DEC",
         trailColor: '#D5E6FA',
         trailWidth: 11,
@@ -15,28 +14,48 @@ $(document).ready(function() {
 
     $('#runner').runner();
 
-    $('.start').click(function() {
+    $('.start-div').delegate('.start', 'click', function() {
         $('#runner').runner('start');
         bar.animate(1.0);
-        // $('.start').hide();
-        // $('.continue').show();
+        $('.pause-reset').removeClass('d-none');
+        // $("#runner").css({ "translate": "0px -50px" })
+        $('.start-div').css({ "opacity": 0.0, "pointer-events": "none" });
+
+        if ($(".pause-continue-img").attr("src") != "./assets/image/pause.svg") {
+            $(".pause-continue-img").attr("src", "./assets/image/pause.svg");
+            $('.continue').removeClass("continue").addClass("pause");
+
+        }
 
     })
 
-    $('.continue').click(function() {
+    $('.pause-reset').delegate('.continue', 'click', function() {
         $('#runner').runner('start');
         bar.resume();
+
+        // changing continue to pause
+        $(".pause-continue-img").attr("src", "./assets/image/pause.svg");
+        $('.continue').removeClass("continue").addClass("pause");
+
     })
 
-    $('.stop').click(function() {
+
+    $('.pause-reset').delegate('.pause', 'click', function() {
         $('#runner').runner('stop');
         bar.pause();
+
+        // change pause to continue
+        $(".pause-continue-img").attr("src", "./assets/image/start.svg");
+        $('.pause').removeClass("pause").addClass("continue");
+
     })
 
-    $('.reset').click(function() {
-        $('#runner').runner('reset');
+    $('.pause-reset').delegate('.reset', 'click', function() {
+        // TODO: to show blur dialogue box
+        $('#runner').runner('reset', true);
         bar.set(0.0);
-        $('.start').show();
-        $('.continue').hide();
+        $('.start-div').css({ "opacity": 1.0, "pointer-events": "auto" });
+        $('.pause-reset').addClass('d-none');
+
     })
 })
