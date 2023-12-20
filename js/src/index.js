@@ -3,25 +3,23 @@ $(document).ready(function() {
     $('.continue').hide();
     var ProgressBar = require('progressbar.js');
     var bar = new ProgressBar.Circle("#container", {
-        strokeWidth: 8,
+        strokeWidth: 11,
         easing: 'easeInOut',
-        duration: 3600000,
-        color: 'rgb(83,179,242)',
+        duration: 3600,
+        color: "#418DEC",
         trailColor: '#D5E6FA',
         trailWidth: 11,
         svgStyle: null
     });
 
 
-    console.log('testing');
-
     $('#runner').runner();
 
     $('.start').click(function() {
         $('#runner').runner('start');
         bar.animate(1.0);
-        $('.start').hide();
-        $('.continue').show();
+        // $('.start').hide();
+        // $('.continue').show();
 
     })
 
