@@ -4,7 +4,7 @@ $(document).ready(function() {
     var bar = new ProgressBar.Circle("#container", {
         strokeWidth: 11,
         easing: 'easeInOut',
-        duration: 600000,
+        duration: 6000,
         color: "#418DEC",
         trailColor: '#D5E6FA',
         trailWidth: 11,
@@ -18,7 +18,6 @@ $(document).ready(function() {
         $('#runner').runner('start');
         bar.animate(1.0);
         $('.pause-reset').removeClass('d-none');
-        // $("#runner").css({ "translate": "0px -50px" })
         $('.start-div').css({ "opacity": 0.0, "pointer-events": "none" });
 
         if ($(".pause-continue-img").attr("src") != "./assets/image/pause.svg") {
