@@ -45,6 +45,9 @@
 
             </div>
         </div>
+
+        <!-- stop button -->
+        <div class="d-flex flex-row justify-content-center align-items-center mt-3"><button id="stop-btn" class="btn btn-primary" type="button">Stop</button></div>
     </section>
 
 
