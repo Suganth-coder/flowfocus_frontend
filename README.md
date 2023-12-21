@@ -42,4 +42,8 @@ With configuration
 
 ---
 
+Setting up Alias
 
+```
+alias js-build="npm run obfuscator js/src/ --output ./js/obs/ && npm run build"g
+```
