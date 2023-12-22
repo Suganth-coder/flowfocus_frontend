@@ -1,7 +1,18 @@
 import Swal from 'sweetalert2';
+import 'ydn.db';
+import { taskMain } from './task_management';
 
 $(document).ready(function() {
 
+
+    /*
+
+     *** Clock Functionalites ****
+
+        i.  Progress Bar Circle
+        ii. Start/ Stop/ Pause/ Continue  Stopwatch Functionalities
+     
+     */
     var bar = new ProgressBar.Circle("#container", {
         strokeWidth: 11,
         easing: 'easeInOut',
@@ -11,7 +22,6 @@ $(document).ready(function() {
         trailWidth: 11,
         svgStyle: null
     });
-
 
     $('#runner').runner();
 
@@ -67,5 +77,7 @@ $(document).ready(function() {
             confirmButtonText: 'Cool'
         });
     })
+
+    taskMain();
 
 })
