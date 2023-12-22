@@ -1,5 +1,4 @@
 import Swal from 'sweetalert2';
-import 'ydn.db';
 import { taskMain } from './task_management';
 
 $(document).ready(function() {

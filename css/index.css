@@ -56,3 +56,11 @@
     -webkit-backdrop-filter: blur(17.4px);
     border: 1px solid #3F8AEA;
 }
+
+.popup-text-color {
+    color: white;
+}
+
+.swal2-styled {
+    color: red;
+}
