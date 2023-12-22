@@ -3,9 +3,7 @@
 `Basic Dependencies`
 
 * [node](https://nodejs.org/en)
-* [npx](https://www.npmjs.com/package/npx)
 * [php](https://www.php.net/manual/en/install.php)
-* [webpack.js](https://webpack.js.org/)
 * [phoeni_php](https://github.com/Suganth-coder/phoeni_php)
 
 ## Folder Structure
@@ -30,20 +28,31 @@
 
 ## Commands
 
-#### To Run Bundler (Webpack)
+### Pre Setup
 
-Without configuration
+#### Phoenitags Framework Initialization
 
-    npx webpack
+[Framework Link](https://github.com/Suganth-coder/phoeni_php)
 
-With configuration
+    phoeni init simple
 
-    npx webpack --config webpack.config.js
+#### Building NPM Packages
+
+    npm build
+    
+
+
+#### Setting up alias
+
+In this framework, js will be obfuscated and minified. For your convenience we have made into single command as follows
+
+[Alias Guidance Link](https://www.tecmint.com/create-alias-in-linux/#:~:text=Creating%20Temporary%20Aliases%20in%20Linux,command%20you%20wish%20to%20alias.&text=You%20can%20then%20use%20%22wr,go%20to%20the%20webroot%20directory.)
+
+```
+alias js-build="npm run obfuscator js/src/ --output ./js/obs/ && npm run build"
+```
+
+`Note`: If any changes done to js files, run `js-build` after that
 
 ---
 
-Setting up Alias
-
-```
-alias js-build="npm run obfuscator js/src/ --output ./js/obs/ && npm run build"g
-```

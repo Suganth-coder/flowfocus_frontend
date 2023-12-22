@@ -1,6 +1,7 @@
+import Swal from 'sweetalert2';
+
 $(document).ready(function() {
 
-    var ProgressBar = require('progressbar.js');
     var bar = new ProgressBar.Circle("#container", {
         strokeWidth: 11,
         easing: 'easeInOut',
@@ -57,4 +58,14 @@ $(document).ready(function() {
         $('.pause-reset').addClass('d-none');
 
     })
+
+    $('.stop-div').delegate('.stop', 'click', function() {
+        Swal.fire({
+            title: 'Error!',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+        });
+    })
+
 })

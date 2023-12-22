@@ -50,7 +50,7 @@
         </div>
 
         <!-- stop button -->
-        <div class="d-flex flex-row justify-content-center align-items-center mt-3"><button id="stop-btn" class="btn btn-primary" type="button">Stop</button></div>
+        <div class="d-flex flex-row justify-content-center align-items-center mt-3 stop-div"><button id="stop-btn" class="btn btn-primary stop" type="button">Stop</button></div>
     </section>
 
 
@@ -73,85 +73,11 @@
                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
                 </svg>Add Task</button></div>
     </div>
-    <div class="container pt-5 pb-4" id="thereportshowr">
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
-        <div id="taskholder">
-            <div id="tasktoppart" class="p-4"><input type="text" id="taskheading" placeholder="TASK 1" class="ps-0 pe-0 me-0" style="width: 100%;"><input type="text" id="taskpara" class="ps-0 pe-0 me-0" placeholder="Lorem ipsum dolor .." style="width: 100%;">
-                <h5 style="text-align: center;display: flex;justify-content: center;align-items: center;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire" style="font-size: 34px;color: #428EED;">
-                        <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-x" style="font-size: 21px;color: #55B4F4;">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
-                    </svg><span style="color: rgb(255, 255, 255);">2</span></h5>
-            </div><button class="btn btn-primary" id="showreportbtn" type="button">Show Report<i class="icon ion-ios-arrow-forward" style="font-size: 23px;"></i></button>
-        </div>
+
+    <!-- Task Container -->
+    <div class="container pt-5 pb-4 task-container" id="thereportshowr">
     </div>
+
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </div>
 
-<script src="./node_modules/jquery.runner/build/jquery.runner-min.js"></script>
-<!-- <button class="start">start</button>
-<button class="continue">continue</button>
-<button class="stop">stop</button>
-<button class="reset">reset</button>  -->
