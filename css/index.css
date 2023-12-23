@@ -47,6 +47,7 @@
     transform: translate(0px, -30px);
 }
 
+<<<<<<< Updated upstream
 .swal2-popup {
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.02);
@@ -64,3 +65,34 @@
 .swal2-styled {
     color: red;
 }
+=======
+#dropdown-div {
+    display: flex;
+    justify-content: end;
+    position: sticky;
+    border-radius: 10px 10px 0px 0px;
+    /* background: #1F2733; */
+    transform: translateY(34px);
+  }
+  #dropdown-btn {
+    border: none;
+    background-color: rgba(255,255,255,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dropdown-menu {
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    position: absolute;
+    background: rgb(14,18,26);
+    color: white;
+  }
+  
+  
+  
+  
+  
+>>>>>>> Stashed changes
