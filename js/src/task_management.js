@@ -10,6 +10,7 @@ export function taskMain() {
         ii. Adding/ Modifying/ Deletion of Div
      */
 
+
     $.get("./assets/templates/task.html", function(data) {
         let taskDiv = $('<div>').append($.parseHTML(data)).find('#taskholder');
 
