@@ -139,6 +139,21 @@ a {
     height: 52px;
     flex-shrink: 0;
 }
+.dropdown-menu {
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  position: absolute;
+  background: rgb(14,18,26);
+  color: white !important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: white !important;
+  background-color: var(--bs-link-color) !important;
+}
+
+
 
 #Taskdivi::-webkit-scrollbar {
     display: none;
@@ -311,3 +326,4 @@ span {}
         width: 550px;
     }
 }
+
