@@ -4,3 +4,5 @@
 <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
 <link rel="stylesheet" href="./css/Navbar-Right-Links-icons.css">
 <link rel="stylesheet" href="./css/styles.css">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -79,5 +79,6 @@
     </div>
 
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/task_management.js"></script>
 </div>
 

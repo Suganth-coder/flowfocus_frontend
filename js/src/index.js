@@ -1,7 +1,3 @@
-import Swal from 'sweetalert2';
-import { taskMain } from './task_management';
-
-
 $(document).ready(function() {
 
 
@@ -78,7 +74,5 @@ $(document).ready(function() {
         });
     })
 
-
-    taskMain();
 
 })
