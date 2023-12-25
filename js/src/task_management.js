@@ -61,8 +61,11 @@ $(document).ready(function() {
                     let new_div = taskDiv.clone();
                     new_div.find('.task-name').val(task_name).parent().attr('task_id', key);
                     new_div.find('.task-desp').val(default_task_desp);
+                    new_div.addClass('animate__fadeInDown');
 
-                    $(".task-container").append(new_div)
+                    $(".task-container").append(new_div).wait(500).after(function() {
+                        new_div.find('.show-report').focus();
+                    });
                 })
 
                 put_data.fail(function(e) {
