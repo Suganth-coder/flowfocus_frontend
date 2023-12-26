@@ -92,20 +92,31 @@ $(document).ready(function() {
         // displaying task div
         db.executeSql('SELECT * FROM tasks').then(function(results) {
 
-            $.each(results, function(k, v) {
-                let new_div = taskDiv.clone();
-                new_div.find('.task-name').val(v['task_name']).parent().attr('task_id', v['task_id']);
-                new_div.find('.task-desp').val(v['task_description']);
-                new_div.find('.task-flow-count').text(v['flow']);
+                $.when(
+                    $.each(results, function(k, v) {
+                        let new_div = taskDiv.clone();
+                        new_div.find('.task-name').val(v['task_name']).parent().attr('task_id', v['task_id']);
+                        new_div.find('.task-desp').val(v['task_description']);
+                        new_div.find('.task-flow-count').text(v['flow']);
 
-                $(".task-container").append(new_div);
+                        $(".task-container").append(new_div);
 
-            })
+                    })).then(function() {
+                    // displaying the selected div from cookies
+                    $('.task-id-div').each(function(index, obj) {
 
+                        if (String(Cookies.get('cst')) == String($(this).attr('task_id'))) {
+                            $(this).css('background', 'black');
+                            $('.clock-current-task-div').text($(this).find('.task-name').val());
+                        }
 
-        }, function(e) {
-            console.log("error: ", e);
-        });
+                    })
+                });
+
+            },
+            function(e) {
+                console.log("error: ", e);
+            });
 
         // deleting the task div
         $('.task-container').delegate('.task-delete', 'click', function() {
@@ -169,6 +180,14 @@ $(document).ready(function() {
             $('.clock-current-task-div').text(task_name);
             Cookies.set('cst', $(this).find('.task-id-div').attr('task_id'), { sameSite: 'strict' })
         });
+
+        $('.stop-clock').click(function() {
+            /*
+                TODO:
+                1. Getting Jquery Runner Value and Updating (flow) in local storage with cst 
+                2. Updating 
+            */
+        })
 
 
     }, 'text');

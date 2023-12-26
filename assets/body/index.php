@@ -52,7 +52,7 @@
         </div>
 
         <!-- stop button -->
-        <div class="d-flex flex-row justify-content-center align-items-center mt-3 stop-div"><button id="stop-btn" class="btn btn-primary stop" type="button">Stop</button></div>
+        <div class="d-flex flex-row justify-content-center align-items-center mt-3 stop-div"><button id="stop-btn" class="btn btn-primary stop-clock" type="button">Stop</button></div>
     </section>
 
 
