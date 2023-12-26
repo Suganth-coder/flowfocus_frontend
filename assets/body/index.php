@@ -45,6 +45,9 @@
                     <div class="p-2 reset" style="width: 100px;"><img class="group" src="./assets/image/reset.svg" /></div>
                 </div>
 
+
+                <div class="clock-current-task-div"><p class="clock-current-task-p"></p></div>
+
             </div>
         </div>
 

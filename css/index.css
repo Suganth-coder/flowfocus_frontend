@@ -1,13 +1,13 @@
 #container {
     margin: 20px;
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
 }
 
 #runner {
-    font-size: 60px;
+    font-size: 70px;
     position: absolute;
-    translate: 0px -80px;
+    translate: 0px -60px;
 }
 
 .start {
@@ -16,7 +16,14 @@
 
 .pause-reset {
     position: absolute;
-    translate: 0px 60px;
+    translate: 10px 70px;
+}
+
+.clock-current-task-div {
+    position: absolute;
+    translate: 0px -130px;
+    font-size: 30px;
+    color: #ffffff;
 }
 
 #stop-btn {
@@ -40,7 +47,7 @@
 .circle-halo {
     position: absolute;
     color: rgba(255, 255, 255, 0);
-    font-size: 400px;
+    font-size: 450px;
     box-shadow: 0px 0px 211px 20px #2B3E5B;
     border-radius: 256px;
     /* width: 451px; */
