@@ -1,6 +1,6 @@
 // import Swal from 'sweetalert2';
 import 'ydn.db';
-
+import Cookies from 'js-cookie';
 
 $(document).ready(function() {
     /* 
@@ -147,6 +147,28 @@ $(document).ready(function() {
 
             })
         })
+
+
+        // selecting the tasks
+        $('.task-container').delegate('.task-card', 'click', function() {
+            /*
+                1. changing the current clock task name
+                2. Storing the current task id in cookie
+            */
+
+            let task_name = $(this).find('.task-name').val();
+            let outer_this = this;
+
+            $('.task-card').each(function() {
+                if (this == outer_this)
+                    $(this).find('.task-id-div').css('background', 'black');
+
+                else
+                    $(this).find('.task-id-div').css('background', '#1F2733');
+            });
+            $('.clock-current-task-div').text(task_name);
+            Cookies.set('cst', $(this).find('.task-id-div').attr('task_id'), { sameSite: 'strict' })
+        });
 
 
     }, 'text');
