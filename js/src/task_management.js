@@ -5,9 +5,13 @@ import Cookies from 'js-cookie';
 $(document).ready(function() {
     /* 
      *** Task CURD Operations ***  
-
         i.  Storing CURD Opearations in local storage
         ii. Adding/ Modifying/ Deletion of Div
+        iii. Stop clock (Task state log)
+
+     *** Cookie Notes ***
+        ccs --> current clock status  (200| 400)
+        cst --> current Selected Task (ID)
      */
 
     let schema = {
@@ -31,6 +35,28 @@ $(document).ready(function() {
                 keyPath: "flow",
                 multiEntry: true
 
+            }]
+        }, {
+            name: "report",
+            keyPath: "logtime",
+            autoIncrement: false,
+            // columns
+            indexes: [{
+                name: "task_id",
+                keyPath: "task_id",
+                multiEntry: true
+
+            }, {
+                name: "flowtime",
+                keyPath: 'flowtime',
+                multiEntry: true
+            }, {
+                name: "breaktime",
+                keyPath: 'breaktime',
+                multiEntry: true
+            }, {
+                name: 'flow',
+                keyPath: 'flow'
             }]
         }]
     };
@@ -60,7 +86,11 @@ $(document).ready(function() {
                 put_data.done(function(key) {
                     let new_div = taskDiv.clone();
                     new_div.find('.task-name').val(task_name).parent().attr('task_id', key);
+                    new_div.addClass('task-id-' + key);
+
                     new_div.find('.task-desp').val(default_task_desp);
+                    new_div.find('.task-flow-count').attr('current_flow', 0);
+
                     new_div.addClass('animate__fadeInDown');
 
                     $(".task-container").append(new_div).wait(500).after(function() {
@@ -96,8 +126,9 @@ $(document).ready(function() {
                     $.each(results, function(k, v) {
                         let new_div = taskDiv.clone();
                         new_div.find('.task-name').val(v['task_name']).parent().attr('task_id', v['task_id']);
+                        new_div.addClass('task-id-' + v['task_id'])
                         new_div.find('.task-desp').val(v['task_description']);
-                        new_div.find('.task-flow-count').text(v['flow']);
+                        new_div.find('.task-flow-count').text(v['flow']).attr('current_flow', parseInt(v['flow']) + 1);
 
                         $(".task-container").append(new_div);
 
@@ -123,6 +154,7 @@ $(document).ready(function() {
             /*
                 1. Removing the task_div 
                 2. Deleting Record in IndexDB based on task_id
+                TODO: remove cst if delete_task is there
              */
             let parent = $(this).parent().parent().parent().parent()
             let task_id = parent.find('.task-id-div').attr('task_id');
@@ -147,16 +179,18 @@ $(document).ready(function() {
 
 
             db.get('tasks', task_id).always(function(record) {
-                if ($(outer_this).hasClass('task-name'))
-                    record['task_name'] = value;
-                else
-                    record['task_description'] = value;
+                if (record != undefined) {
+                    if ($(outer_this).hasClass('task-name'))
+                        record['task_name'] = value;
+                    else
+                        record['task_description'] = value;
 
-                db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
-                    console.log(e);
-                })
+                    db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
+                        console.log(e);
+                    });
+                };
 
-            })
+            });
         })
 
 
@@ -181,13 +215,68 @@ $(document).ready(function() {
             Cookies.set('cst', $(this).find('.task-id-div').attr('task_id'), { sameSite: 'strict' })
         });
 
+        $('.clock-container').attr('flow', true);
+        if (Cookies.get('ccs') == undefined)
+            Cookies.set('ccs', 200);
+
+
+        // task synchornization
         $('.stop-clock').click(function() {
             /*
-                TODO:
-                1. Getting Jquery Runner Value and Updating (flow) in local storage with cst 
-                2. Updating 
+                1. check cookie cst, css
+                2. If cst, update the IndexDB
+                3. Else show dialog box
             */
-        })
+            let task_id = parseInt(Cookies.get('cst'));
+
+            if (task_id != undefined) {
+                let val = $("#runner").text();
+                if ($(".task-id-" + task_id).length != 0) {
+
+                    let current_flow = $('.task-id-' + task_id).find('.task-flow-count').attr('current_flow'),
+                        flowtime = val,
+                        breaktime = "00:00:00";
+
+                    if (Cookies.get('ccs') != 200) {
+                        breaktime = val;
+                        flowtime = "00:00:00";
+                    }
+                    $('#runner').runner('reset', true);
+                    // updating report db
+                    let put_data = db.put('report', { 'logtime': Date.now(), 'task_id': task_id, 'flowtime': flowtime, 'breaktime': breaktime, 'flow': current_flow });
+
+                    put_data.done(function(key) {
+                        let temp = $('.task-id-' + task_id).find('.task-flow-count');
+                        temp.attr('current_flow', parseInt(current_flow) + 1);
+                        temp.text(current_flow);
+
+                        db.get('tasks', task_id).done(function(record) {
+
+                            if (record != undefined) {
+                                record['flow'] = current_flow;
+                                // updating task db
+                                db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
+                                    console.log(e);
+                                });
+                            }
+
+                        });
+                    });
+
+                    put_data.fail(function(e) {
+                        console.log(e);
+                    });
+
+
+
+                } else {
+                    // TODO: show alert task not found
+                }
+
+            } else {
+                // TODO: no current task element selected
+            }
+        });
 
 
     }, 'text');

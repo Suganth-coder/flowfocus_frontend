@@ -11,7 +11,7 @@ $(document).ready(function() {
      */
     var bar = new ProgressBar.Circle("#container", {
         strokeWidth: 9,
-        duration: 10000,
+        duration: 3600000,
         from: { color: '#54B4F3' },
         to: { color: '#418DEC' },
         step: function(state, bar, attachment) {
