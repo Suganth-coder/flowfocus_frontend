@@ -10,6 +10,11 @@
     translate: 0px -60px;
 }
 
+.flowfocus-title,
+.c-theme {
+    color: #428EED;
+}
+
 .start {
     translate: 0px -160px;
 }
@@ -40,7 +45,7 @@
     border: 2px solid #3F8AEA;
 }
 
-#stop-btn:hover {
+.stop-clock:hover {
     box-shadow: 0px 0px 20px 20px #2B3E5B;
 }
 
@@ -98,23 +103,6 @@
     color: white;
 }
 
-#dropdown-div {
-    display: flex;
-    justify-content: end;
-    position: sticky;
-    border-radius: 10px 10px 0px 0px;
-    background: #1f273300;
-    transform: translateY(34px);
-}
-
-#dropdown-btn {
-    border: none;
-    background-color: rgba(255, 255, 255, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .dropdown-item {
     color: white !important;
 }
@@ -125,4 +113,16 @@
 
 .task-id-div {
     background: #1F2733;
+}
+
+.toggle-switch {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 1px;
+}
+
+.clock-toggle {
+    position: absolute;
+    translate: 400px -115px;
 }

@@ -1,6 +1,62 @@
+import Cookies from 'js-cookie';
 $(document).ready(function() {
 
+    let load_theme = () => {
+        /*
+            TODO:
+            1. check ccs, if break load red, else load the specific themes
+            Themes
+                Cookies --> cth (current theme)
+                * ocean shade (os)
+                * forest green (fg)
+        */
 
+        let ccs = String(Cookies.get('ccs')),
+            cth = String(Cookies.get('cth'));
+
+        let circle_halo = '#2B3E5B',
+            start_src = './assets/image/start.svg',
+            stop_border = '#3F8AEA',
+            btn_color = '#1D60B3';
+
+        if (ccs != 200) {
+            // break 
+            circle_halo = '#5b2b39';
+            start_src = './assets/image/start-red.svg';
+            stop_border = '#ea3f64';
+            btn_color = '#c22748';
+        } else {
+            // flow
+        }
+
+        $('.circle-halo').css({ "box-shadow": `0px 0px 211px 20px ${circle_halo}` });
+        $('.start').attr('src', start_src);
+        $('#stop-btn, #navdrop').css({ "border": `2px solid ${stop_border}` });
+        $('#loginnav').css({ 'background': stop_border, "border": `2px solid ${stop_border}` });
+        $('.flowfocus-title, .c-theme, .dropdown-toggle').css({ 'color': stop_border });
+
+        $(".flow-icon svg").each(function() {
+            $(this).css("fill", stop_border);
+        });
+
+        $('.add_task_btn').css({
+            'background': stop_border,
+            'border': `2px solid ${stop_border}`
+        });
+
+        $('.add_task_btn').mouseout(function() {
+            $(this).css({ 'background': stop_border });
+        });
+
+        $('.show-report').css({ 'background': btn_color, 'border': `2px solid ${btn_color}` });
+
+        $('.stop-clock').hover(function() {
+            $(this).css({ "box-shadow": `0px 0px 20px 20px ${circle_halo}` });
+        }, function() {
+            $(this).css({ "box-shadow": "none" });
+        });
+
+    };
     /*
 
      *** Clock Functionalites ****
@@ -12,8 +68,6 @@ $(document).ready(function() {
     var bar = new ProgressBar.Circle("#container", {
         strokeWidth: 9,
         duration: 3600000,
-        from: { color: '#54B4F3' },
-        to: { color: '#418DEC' },
         step: function(state, bar, attachment) {
             bar.path.setAttribute('stroke', state.color);
             //TODO: reset when it comes to 1
@@ -56,9 +110,32 @@ $(document).ready(function() {
 
     });
 
+    Cookies.set('cth', 'os');
+
     $('.start-div').delegate('.start', 'click', function() {
         $('#runner').runner('start');
-        bar.animate(1.0);
+
+        let ccs = String(Cookies.get('ccs'));
+
+        if (ccs == "200") {
+
+            bar.animate(1.0, {
+                from: { color: '#54B4F3' },
+                to: { color: '#418DEC' }
+            });
+
+        } else {
+            bar.set(1.0);
+            bar.animate(-0.0, {
+                duration: 10000,
+                from: {
+                    color: '#FF5454'
+                },
+                to: { color: '#FF7878' },
+            });
+        }
+
+
         $('.pause-reset').removeClass('d-none');
         $('.start-div').css({ "opacity": 0.0, "pointer-events": "none" });
 
@@ -99,6 +176,20 @@ $(document).ready(function() {
         $('.pause-reset').addClass('d-none');
 
     })
+
+    // clock toggle (flow/break)
+    $('.clock-toggle-inp').on('change', function() {
+
+        if (!($(this).is(':checked')))
+            Cookies.set('ccs', 400);
+        else
+            Cookies.set('ccs', 200);
+
+        load_theme();
+
+    });
+
+
 
 
 })

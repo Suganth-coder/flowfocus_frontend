@@ -154,7 +154,9 @@ $(document).ready(function() {
             /*
                 1. Removing the task_div 
                 2. Deleting Record in IndexDB based on task_id
-                TODO: remove cst if delete_task is there
+                TODO: 
+                    * remove cst if delete_task is there
+                    * if a task is deleted, remove it from report index db too
              */
             let parent = $(this).parent().parent().parent().parent()
             let task_id = parent.find('.task-id-div').attr('task_id');
@@ -241,7 +243,7 @@ $(document).ready(function() {
                         breaktime = val;
                         flowtime = "00:00:00";
                     }
-                    $('#runner').runner('reset', true);
+                    $('.reset').trigger('click');
                     // updating report db
                     let put_data = db.put('report', { 'logtime': Date.now(), 'task_id': task_id, 'flowtime': flowtime, 'breaktime': breaktime, 'flow': current_flow });
 
