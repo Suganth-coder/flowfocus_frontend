@@ -47,49 +47,71 @@
                 </div>
 
 
-                <div class="clock-current-task-div"><p class="clock-current-task-p"></p></div>
+                <div class="clock-current-task-div">
+                    <p class="clock-current-task-p"></p>
+                </div>
 
             </div>
         </div>
 
+        <div class="d-flex flex-row justify-content-center align-items-center clock-toggle">
+            <label id="toggle-label">
+
+
+                <input type="checkbox" id="toggleinput" />
+                <span class="spa" id="am">FLOW</span>
+                <div class="continr" id="button">
+                    <div class="bg"></div>
+                    <div class="ray ray-inner"></div>
+                    <div class="ray ray-medium"></div>
+                    <div class="ray ray-far"></div>
+                    <div class="sun">
+                        <div class="moon">
+                        </div>
+                    </div>
+                </div>
+                <span class="spa" id="pm">BREAK</span>
+                </label>
+        </div>
         <!-- stop button -->
         <div class="d-flex flex-row justify-content-center align-items-center mt-3 stop-div"><button id="stop-btn" class="btn btn-primary stop-clock" type="button">Stop</button></div>
 
         <!-- Toggle  -->
-        <div class="clock-toggle">
-            <input type="checkbox" class="clock-toggle-inp" checked data-toggle="toggle" data-on="flow" data-off="break" data-onstyle="primary" data-offstyle="danger">
-        </div>
 
-    </section>
-
-
-    <div id="Taskdivi" class="m-5 me-0 ms-0" style="overflow-y: hidden;width: 100%;">
-        <div class="row" style="overflow-y: hidden;">
-            <div class="col-4 col-sm-5 col-md-5 col-lg-5 col-xl-5 offset-xl-0">
-                <div class="m-3" style="height: 1px;background: linear-gradient(-94deg, #D5E6FA 0%, rgba(213, 230, 250, 0.00) 100%);"></div>
-            </div>
-            <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" style="display: flex;justify-content: center;align-items: center;">
-                <h1 style="color: #D5E6FA;text-align: center;font-size: 25px;font-style: normal;font-weight: 700;line-height: normal;">TASKS</h1>
-            </div>
-            <div class="col-4 col-sm-5 col-md-5 col-xl-5">
-                <div style="height: 1px;background: linear-gradient(90deg, #D5E6FA 0%, rgba(213, 230, 250, 0.00) 100%);" class="m-3"></div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div id="searchdiv"><input type="search" style="color: #ffffff;font-size: 20px;font-style: normal;font-weight: 400;line-height: normal;border-radius: 7px;border: 1px solid #4F5A6C;background: #07090F;width: 70%;height: 52px;flex-shrink: 0;" placeholder="What are you working on now?" class="ps-3 task_name_inp">
-        <button class="btn btn-primary add_task_btn" type="button" style="display: flex;justify-content: center;gap: 10px;align-items: center;color: #F5F9FF;text-align: center;font-size: 18px;font-style: normal;font-weight: 700;line-height: normal;border-radius: 7px;background: #1D60B3;width: 24%;height: 52px;flex-shrink: 0; " onmouseover="this.style.background='#000000';" onmouseout="this.style.background='#1D60B3';"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-circle" style="font-size: 20px;font-weight: 700;">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
-                </svg>Add Task</button></div>
-    </div>
-
-    <!-- Task Container -->
-    <div class="container pt-5 pb-4 task-container" id="thereportshowr">
-    </div>
-
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./js/task_management.js"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        
 </div>
 
+
+</section>
+
+
+<div id="Taskdivi" class="m-5 me-0 ms-0" style="overflow-y: hidden;width: 100%;">
+    <div class="row" style="overflow-y: hidden;">
+        <div class="col-4 col-sm-5 col-md-5 col-lg-5 col-xl-5 offset-xl-0">
+            <div class="m-3" style="height: 1px;background: linear-gradient(-94deg, #D5E6FA 0%, rgba(213, 230, 250, 0.00) 100%);"></div>
+        </div>
+        <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2" style="display: flex;justify-content: center;align-items: center;">
+            <h1 style="color: #D5E6FA;text-align: center;font-size: 25px;font-style: normal;font-weight: 700;line-height: normal;">TASKS</h1>
+        </div>
+        <div class="col-4 col-sm-5 col-md-5 col-xl-5">
+            <div style="height: 1px;background: linear-gradient(90deg, #D5E6FA 0%, rgba(213, 230, 250, 0.00) 100%);" class="m-3"></div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div id="searchdiv"><input type="search" style="color: #ffffff;font-size: 20px;font-style: normal;font-weight: 400;line-height: normal;border-radius: 7px;border: 1px solid #4F5A6C;background: #07090F;width: 70%;height: 52px;flex-shrink: 0;" placeholder="What are you working on now?" class="ps-3 task_name_inp">
+        <button class="btn btn-primary add_task_btn" type="button" style="display: flex;justify-content: center;gap: 10px;align-items: center;color: #F5F9FF;text-align: center;font-size: 18px;font-style: normal;font-weight: 700;line-height: normal;border-radius: 7px;background: #1D60B3;width: 24%;height: 52px;flex-shrink: 0; " onmouseover="this.style.background='#000000';" onmouseout="this.style.background='#1D60B3';"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-plus-circle" style="font-size: 20px;font-weight: 700;">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+            </svg>Add Task</button>
+    </div>
+</div>
+
+<!-- Task Container -->
+<div class="container pt-5 pb-4 task-container" id="thereportshowr">
+</div>
+
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="./js/task_management.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+</div>
