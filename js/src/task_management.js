@@ -279,6 +279,7 @@ $(document).ready(function() {
                                      2. change to break
                                   */
 
+                                // Switch to break
                                 Cookies.set('fflow', 200);
                                 Cookies.set('ccs', 400);
                                 $('.clock-toggle-inp').prop('checked', true);
@@ -293,6 +294,13 @@ $(document).ready(function() {
                             console.log(e);
                         });
 
+
+                    } else {
+                        Cookies.set('fflow', 400);
+                        Cookies.set('ccs', 200);
+                        $('.clock-toggle-inp').prop('checked', false);
+
+                        $(document).trigger('flowbreakchange');
 
                     }
 

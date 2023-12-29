@@ -37,7 +37,7 @@ $(document).ready(function() {
         ii. Start/ Stop/ Pause/ Continue  Stopwatch Functionalities
      
      */
-    var bar = new ProgressBar.Circle("#container", {
+    var bar = new ProgressBar.Circle(".clockcontainer", {
         strokeWidth: 9,
         duration: 3600000,
         step: function(state, bar, attachment) {
@@ -48,7 +48,6 @@ $(document).ready(function() {
         trailWidth: 9,
         svgStyle: null
     });
-
 
     let runner_config = {
         milliseconds: false,
@@ -85,7 +84,7 @@ $(document).ready(function() {
     $('#runner').runner(runner_config);
 
     $('.start-div').delegate('.start', 'click', function() {
-        $('#runner').runner('start');
+
 
         let ccs = String(Cookies.get('ccs'));
 
@@ -98,7 +97,7 @@ $(document).ready(function() {
 
         } else {
 
-            bar.animate(-1.0, {
+            bar.animate(-0.0, {
                 duration: runner_config.startAt,
                 from: {
                     color: '#FF5454'
@@ -110,7 +109,7 @@ $(document).ready(function() {
             });
         }
 
-
+        $('#runner').runner('start');
         $('.pause-reset').removeClass('d-none');
         $('.start-div').css({ "opacity": 0.0, "pointer-events": "none" });
 
@@ -161,11 +160,13 @@ $(document).ready(function() {
             runner_config.countdown = true;
             runner_config.startAt = 300000;
 
+            bar.set(1.0);
             $('#runner').runner(runner_config);
 
         } else {
             Cookies.set('ccs', 200);
 
+            bar.set(0);
             runner_config.countdown = false;
             runner_config.startAt = 0;
             $('#runner').runner(runner_config);
@@ -179,10 +180,45 @@ $(document).ready(function() {
     // toggle change
     $('.clock-toggle-inp').on('change', function() {
 
-        if ($('.clock-toggle-inp').is(':checked')) {
-            Cookies.set('fflow', 400)
+
+        if ($('#runner').runner('info').running == true) {
+            Swal.fire({
+                customClass: {
+                    popup: 'popup-text-color',
+                },
+                title: 'Switch?',
+                text: (String(Cookies.get('ccs')) == '200') ? "Do you wanna switch to break?" : "Do you wanna switch to flow?",
+                icon: 'warning',
+                confirmButtonText: 'okay',
+                showCancelButton: true
+            }).then((result) => {
+                if (result.isDismissed) {
+                    if (($('.clock-toggle-inp').is(':checked')))
+                        $('.clock-toggle-inp').prop('checked', false);
+
+                    else
+                        $('.clock-toggle-inp').prop('checked', true);
+
+                } else if (result.isConfirmed) {
+
+                    if ($('.clock-toggle-inp').is(':checked')) {
+                        Cookies.set('fflow', 400)
+                    }
+                    $('.reset').trigger('click');
+                    $(document).trigger('flowbreakchange');
+
+                }
+            });
+        } else {
+
+            if ($('.clock-toggle-inp').is(':checked')) {
+                Cookies.set('fflow', 400)
+            }
+            $(document).trigger('flowbreakchange');
+
+
         }
-        $(document).trigger('flowbreakchange');
+
     })
 
 
