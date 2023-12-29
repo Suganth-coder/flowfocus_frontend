@@ -1,62 +1,36 @@
 import Cookies from 'js-cookie';
+import load_theme from './theme.js';
+/*
+
+Cookies info
+
+1. cth (current theme)
+    * ocean shade (os)
+    * forest green (fg)
+
+2. ccs (current clock state)
+    * flow  --> 200
+    * break --> 400
+
+3. cst (current selected task)
+    * task_id (int)
+
+4. fflow (from flow) --> for break checking
+   * true  --> 200
+   * false --> 400
+
+*/
 $(document).ready(function() {
 
-    let load_theme = () => {
-        /*
-            TODO:
-            1. check ccs, if break load red, else load the specific themes
-            Themes
-                Cookies --> cth (current theme)
-                * ocean shade (os)
-                * forest green (fg)
-        */
+    if (Cookies.get('cth') == undefined)
+        Cookies.set('cth', 'os');
 
-        let ccs = String(Cookies.get('ccs')),
-            cth = String(Cookies.get('cth'));
+    if (Cookies.get('ccs') == undefined)
+        Cookies.set('ccs', 200);
 
-        let circle_halo = '#2B3E5B',
-            start_src = './assets/image/start.svg',
-            stop_border = '#3F8AEA',
-            btn_color = '#1D60B3';
 
-        if (ccs != 200) {
-            // break 
-            circle_halo = '#5b2b39';
-            start_src = './assets/image/start-red.svg';
-            stop_border = '#ea3f64';
-            btn_color = '#c22748';
-        } else {
-            // flow
-        }
+    load_theme();
 
-        $('.circle-halo').css({ "box-shadow": `0px 0px 211px 20px ${circle_halo}` });
-        $('.start').attr('src', start_src);
-        $('#stop-btn, #navdrop').css({ "border": `2px solid ${stop_border}` });
-        $('#loginnav').css({ 'background': stop_border, "border": `2px solid ${stop_border}` });
-        $('.flowfocus-title, .c-theme, .dropdown-toggle').css({ 'color': stop_border });
-
-        $(".flow-icon svg").each(function() {
-            $(this).css("fill", stop_border);
-        });
-
-        $('.add_task_btn').css({
-            'background': stop_border,
-            'border': `2px solid ${stop_border}`
-        });
-
-        $('.add_task_btn').mouseout(function() {
-            $(this).css({ 'background': stop_border });
-        });
-
-        $('.show-report').css({ 'background': btn_color, 'border': `2px solid ${btn_color}` });
-
-        $('.stop-clock').hover(function() {
-            $(this).css({ "box-shadow": `0px 0px 20px 20px ${circle_halo}` });
-        }, function() {
-            $(this).css({ "box-shadow": "none" });
-        });
-
-    };
     /*
 
      *** Clock Functionalites ****
@@ -77,7 +51,8 @@ $(document).ready(function() {
         svgStyle: null
     });
 
-    $('#runner').runner({
+
+    let runner_config = {
         milliseconds: false,
         format: function(s, so) {
             var t = parseInt(s);
@@ -108,9 +83,8 @@ $(document).ready(function() {
 
         }
 
-    });
-
-    Cookies.set('cth', 'os');
+    };
+    $('#runner').runner(runner_config);
 
     $('.start-div').delegate('.start', 'click', function() {
         $('#runner').runner('start');
@@ -177,19 +151,47 @@ $(document).ready(function() {
 
     })
 
-    // clock toggle (flow/break)
-    $('.clock-toggle-inp').on('change', function() {
+    // flow-break change event
+    $(document).on('flowbreakchange', function() {
 
-        if (!($(this).is(':checked')))
+        if (!($('.clock-toggle-inp').is(':checked'))) {
             Cookies.set('ccs', 400);
-        else
+
+            runner_config.countdown = true;
+            runner_config.startAt = 60000;
+
+            $('#runner').runner(runner_config);
+
+        } else {
             Cookies.set('ccs', 200);
+
+            runner_config.countdown = false;
+            runner_config.startAt = 0;
+            $('#runner').runner(runner_config);
+        }
+
 
         load_theme();
 
     });
 
+    // toggle change
+    $('.clock-toggle-inp').on('change', function() {
 
+        if (!($('.clock-toggle-inp').is(':checked'))) {
+            Cookies.set('fflow', 400)
+        }
+        $(document).trigger('flowbreakchange');
+    })
+
+
+    if (String(Cookies.get('ccs')) == '200')
+        $('.clock-toggle-inp').prop('checked', true);
+
+    else
+        $('.clock-toggle-inp').prop('checked', false);
+
+    $(document).trigger('flowbreakchange');
 
 
 })

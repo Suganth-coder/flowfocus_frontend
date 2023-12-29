@@ -9,9 +9,6 @@ $(document).ready(function() {
         ii. Adding/ Modifying/ Deletion of Div
         iii. Stop clock (Task state log)
 
-     *** Cookie Notes ***
-        ccs --> current clock status  (200| 400)
-        cst --> current Selected Task (ID)
      */
 
     let schema = {
@@ -217,11 +214,6 @@ $(document).ready(function() {
             Cookies.set('cst', $(this).find('.task-id-div').attr('task_id'), { sameSite: 'strict' })
         });
 
-        $('.clock-container').attr('flow', true);
-        if (Cookies.get('ccs') == undefined)
-            Cookies.set('ccs', 200);
-
-
         // task synchornization
         $('.stop-clock').click(function() {
             /*
@@ -239,7 +231,7 @@ $(document).ready(function() {
                         flowtime = val,
                         breaktime = "00:00:00";
 
-                    if (Cookies.get('ccs') != 200) {
+                    if (String(Cookies.get('ccs')) != '200') {
                         breaktime = val;
                         flowtime = "00:00:00";
                     }
@@ -247,28 +239,46 @@ $(document).ready(function() {
                     // updating report db
                     let put_data = db.put('report', { 'logtime': Date.now(), 'task_id': task_id, 'flowtime': flowtime, 'breaktime': breaktime, 'flow': current_flow });
 
-                    put_data.done(function(key) {
-                        let temp = $('.task-id-' + task_id).find('.task-flow-count');
-                        temp.attr('current_flow', parseInt(current_flow) + 1);
-                        temp.text(current_flow);
+                    if (String(Cookies.get('ccs')) == "200") {
+                        // if flow
+                        put_data.done(function(key) {
+                            let temp = $('.task-id-' + task_id).find('.task-flow-count');
+                            temp.attr('current_flow', parseInt(current_flow) + 1);
+                            temp.text(current_flow);
 
-                        db.get('tasks', task_id).done(function(record) {
+                            $.when(db.get('tasks', task_id).done(function(record) {
 
-                            if (record != undefined) {
-                                record['flow'] = current_flow;
-                                // updating task db
-                                db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
-                                    console.log(e);
-                                });
-                            }
+                                if (record != undefined) {
+                                    record['flow'] = current_flow;
+                                    // updating task db
+                                    db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
+                                        console.log(e);
+                                    });
+                                }
+
+                            })).done(function() {
+                                /*
+                                     TODO:
+                                     1. Calculate Break timings (5, 8, 10, 20) \n
+                                     2. change to break
+                                  */
+
+                                Cookies.set('fflow', 200);
+                                Cookies.set('ccs', 400);
+                                $('.clock-toggle-inp').prop('checked', false);
+
+                                $(document).trigger('flowbreakchange');
+
+                            })
 
                         });
-                    });
 
-                    put_data.fail(function(e) {
-                        console.log(e);
-                    });
+                        put_data.fail(function(e) {
+                            console.log(e);
+                        });
 
+
+                    }
 
 
                 } else {
