@@ -15,7 +15,7 @@ Cookies info
 3. cst (current selected task)
     * task_id (int)
 
-4. fflow (from flow) --> for break checking
+4. fflow (from flow by using stop button) --> for break checking
    * true  --> 200
    * false --> 400
 
@@ -27,7 +27,6 @@ $(document).ready(function() {
 
     if (Cookies.get('ccs') == undefined)
         Cookies.set('ccs', 200);
-
 
     /*
 

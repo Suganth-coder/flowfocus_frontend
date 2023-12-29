@@ -237,6 +237,9 @@ $(document).ready(function() {
                     if (String(Cookies.get('ccs')) != '200') {
                         breaktime = val;
                         flowtime = "00:00:00";
+
+                        if (String(Cookies.get('fflow')) == '200')
+                            current_flow = current_flow - 1;
                     }
 
                     if ($('#runner').runner('info').running == false) {
@@ -252,7 +255,13 @@ $(document).ready(function() {
                         return;
                     }
                     $('.reset').trigger('click');
-                    // updating report db
+
+                    /*
+                    TODO:
+                        use hash for KeyPath = hash(task_id, flow) \n
+                        use one record for one task
+                        use object for flow flow {1:{'breaktime':'33', 'flowtime':'33'}}
+                    */
                     let put_data = db.put('report', { 'logtime': Date.now(), 'task_id': task_id, 'flowtime': flowtime, 'breaktime': breaktime, 'flow': current_flow });
 
                     if (String(Cookies.get('ccs')) == "200") {
@@ -296,6 +305,7 @@ $(document).ready(function() {
 
 
                     } else {
+
                         Cookies.set('fflow', 400);
                         Cookies.set('ccs', 200);
                         $('.clock-toggle-inp').prop('checked', false);
