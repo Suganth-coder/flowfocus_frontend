@@ -1,5 +1,5 @@
-body{
-  background-color: black !important;
+body {
+    background-color: black !important;
 }
 
 #container {
@@ -70,15 +70,10 @@ body{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(17.4px);
     -webkit-backdrop-filter: blur(17.4px);
-    border: 1px solid #3F8AEA;
 }
 
 .popup-text-color {
     color: white;
-}
-
-.swal2-styled {
-    color: red;
 }
 
 #dropdown-div {
@@ -126,11 +121,8 @@ body{
     border-radius: 1px;
 }
 
+
 /* .clock-toggle {
     position: absolute;
     translate: 400px -115px;
 } */
-
-
-
-  

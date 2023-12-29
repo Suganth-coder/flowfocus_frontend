@@ -57,8 +57,7 @@
         <div class="d-flex flex-row justify-content-center align-items-center clock-toggle">
             <label id="toggle-label">
 
-
-                <input type="checkbox" id="toggleinput" />
+                <input type="checkbox" id="toggleinput" class="clock-toggle-inp"/>
                 <span class="spa" id="am">FLOW</span>
                 <div class="continr" id="button">
                     <div class="bg"></div>

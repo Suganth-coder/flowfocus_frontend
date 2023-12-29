@@ -29,8 +29,6 @@ $(document).ready(function() {
         Cookies.set('ccs', 200);
 
 
-    load_theme();
-
     /*
 
      *** Clock Functionalites ****
@@ -99,13 +97,16 @@ $(document).ready(function() {
             });
 
         } else {
-            bar.set(1.0);
-            bar.animate(-0.0, {
-                duration: 10000,
+
+            bar.animate(-1.0, {
+                duration: runner_config.startAt,
                 from: {
                     color: '#FF5454'
                 },
-                to: { color: '#FF7878' },
+                to: { color: '#ff4f4f' },
+                step: function(state, circle, attachment) {
+                    circle.path.setAttribute('stroke', state.color);
+                }
             });
         }
 
@@ -154,11 +155,11 @@ $(document).ready(function() {
     // flow-break change event
     $(document).on('flowbreakchange', function() {
 
-        if (!($('.clock-toggle-inp').is(':checked'))) {
+        if ($('.clock-toggle-inp').is(':checked')) {
             Cookies.set('ccs', 400);
 
             runner_config.countdown = true;
-            runner_config.startAt = 60000;
+            runner_config.startAt = 300000;
 
             $('#runner').runner(runner_config);
 
@@ -178,14 +179,14 @@ $(document).ready(function() {
     // toggle change
     $('.clock-toggle-inp').on('change', function() {
 
-        if (!($('.clock-toggle-inp').is(':checked'))) {
+        if ($('.clock-toggle-inp').is(':checked')) {
             Cookies.set('fflow', 400)
         }
         $(document).trigger('flowbreakchange');
     })
 
 
-    if (String(Cookies.get('ccs')) == '200')
+    if (String(Cookies.get('ccs')) != '200')
         $('.clock-toggle-inp').prop('checked', true);
 
     else

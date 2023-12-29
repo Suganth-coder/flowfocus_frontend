@@ -1,6 +1,7 @@
 // import Swal from 'sweetalert2';
 import 'ydn.db';
 import Cookies from 'js-cookie';
+import load_theme from './theme.js';
 
 $(document).ready(function() {
     /* 
@@ -138,7 +139,9 @@ $(document).ready(function() {
                             $('.clock-current-task-div').text($(this).find('.task-name').val());
                         }
 
-                    })
+                    });
+
+                    load_theme();
                 });
 
             },
@@ -235,6 +238,19 @@ $(document).ready(function() {
                         breaktime = val;
                         flowtime = "00:00:00";
                     }
+
+                    if ($('#runner').runner('info').running == false) {
+                        Swal.fire({
+                            customClass: {
+                                popup: 'popup-text-color',
+                            },
+                            title: 'Not yet Started',
+                            text: (String(Cookies.get('ccs')) == '200') ? "Flowtime not yet started" : "Breaktime not yet started",
+                            icon: 'warning',
+                            confirmButtonText: 'okay'
+                        });
+                        return;
+                    }
                     $('.reset').trigger('click');
                     // updating report db
                     let put_data = db.put('report', { 'logtime': Date.now(), 'task_id': task_id, 'flowtime': flowtime, 'breaktime': breaktime, 'flow': current_flow });
@@ -265,7 +281,7 @@ $(document).ready(function() {
 
                                 Cookies.set('fflow', 200);
                                 Cookies.set('ccs', 400);
-                                $('.clock-toggle-inp').prop('checked', false);
+                                $('.clock-toggle-inp').prop('checked', true);
 
                                 $(document).trigger('flowbreakchange');
 
