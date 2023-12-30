@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import load_theme from './theme.js';
+import custom_break from './custom-break.js';
 /*
 
 Cookies info
@@ -231,5 +232,7 @@ $(document).ready(function() {
 
     $(document).trigger('flowbreakchange');
 
+    // custom break logic
+    custom_break();
 
 })

@@ -68,6 +68,10 @@
         transform: translate(0px, -30px);
     }
     
+    #runner:hover {
+        cursor: pointer;
+    }
+    
     .swal2-popup {
         /* From https://css.glass */
         background: rgba(255, 255, 255, 0.02);
@@ -137,3 +141,30 @@
     position: absolute;
     translate: 400px -115px;
 } */
+    
+    .cb-inp {
+        width: 50px;
+    }
+    
+    .cb-out-inp-div {
+        height: 100px;
+        width: 100px;
+    }
+    
+    .custom-break p {
+        margin-right: 30px;
+    }
+    
+    .custom-break {
+        font-style: normal;
+    }
+    
+    .cb-heading {
+        margin-bottom: 40px;
+        color: #3F8AEA;
+    }
+    
+    .custom-break input::placeholder {
+        color: white;
+        opacity: 0.5;
+    }

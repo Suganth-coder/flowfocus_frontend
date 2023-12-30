@@ -51,6 +51,7 @@
                     <p class="clock-current-task-p"></p>
                 </div>
 
+                
             </div>
         </div>
 
@@ -75,13 +76,14 @@
         <!-- stop button -->
         <div class="d-flex flex-row justify-content-center align-items-center mt-3 stop-div"><button id="stop-btn" class="btn btn-primary stop-clock" type="button">Stop</button></div>
 
-        <!-- Toggle  -->
-
         
 </div>
 
 
 </section>
+
+
+
 
 <table id="report_log" class="table table-striped" style="width:100%;" data-bs-theme="dark">
     <thead>
