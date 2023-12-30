@@ -36,7 +36,7 @@ $(document).ready(function() {
             }]
         }, {
             name: "report",
-            keyPath: "logtime",
+            keyPath: "task_id",
             autoIncrement: false,
             // columns
             indexes: [{
@@ -45,16 +45,9 @@ $(document).ready(function() {
                 multiEntry: true
 
             }, {
-                name: "flowtime",
-                keyPath: 'flowtime',
+                name: "flow_log",
+                keyPath: 'flow_log',
                 multiEntry: true
-            }, {
-                name: "breaktime",
-                keyPath: 'breaktime',
-                multiEntry: true
-            }, {
-                name: 'flow',
-                keyPath: 'flow'
             }]
         }]
     };
@@ -256,63 +249,80 @@ $(document).ready(function() {
                     }
                     $('.reset').trigger('click');
 
-                    /*
-                    TODO:
-                        use hash for KeyPath = hash(task_id, flow) \n
-                        use one record for one task
-                        use object for flow flow {1:{'breaktime':'33', 'flowtime':'33'}}
-                    */
-                    let put_data = db.put('report', { 'logtime': Date.now(), 'task_id': task_id, 'flowtime': flowtime, 'breaktime': breaktime, 'flow': current_flow });
+                    // Storing the log in report db and task db 
+                    var put_data;
+                    $.when(db.get('report', task_id).done(function(record) {
 
-                    if (String(Cookies.get('ccs')) == "200") {
-                        // if flow
-                        put_data.done(function(key) {
-                            let temp = $('.task-id-' + task_id).find('.task-flow-count');
-                            temp.attr('current_flow', parseInt(current_flow) + 1);
-                            temp.text(current_flow);
+                        if (record != undefined) {
+                            if (current_flow in record['flow_log']) {
+                                if (String(Cookies.get('ccs')) != '200')
+                                // breaktime
+                                    record['flow_log'][current_flow]['breaktime'] = breaktime;
+                                else
+                                    record['flow_log'][current_flow]['flowtime'] = flowtime;
+                            } else {
+                                record['flow_log'][current_flow] = { 'flowtime': flowtime, breaktime: breaktime };
+                            }
+                            put_data = db.put({ name: 'report', keyPath: 'task_id' }, record);
+                        } else
+                            put_data = db.put('report', { 'task_id': task_id, 'flow_log': { 1: { "flowtime": flowtime, "breaktime": breaktime } } });
 
-                            $.when(db.get('tasks', task_id).done(function(record) {
+                    })).then(function() {
 
-                                if (record != undefined) {
-                                    record['flow'] = current_flow;
-                                    // updating task db
-                                    db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
-                                        console.log(e);
-                                    });
-                                }
+                        if (String(Cookies.get('ccs')) == "200") {
 
-                            })).done(function() {
-                                /*
-                                     TODO:
-                                     1. Calculate Break timings (5, 8, 10, 20) \n
-                                     2. change to break
-                                  */
+                            console.log(put_data);
+                            // if flow
+                            put_data.done(function(key) {
+                                let temp = $('.task-id-' + task_id).find('.task-flow-count');
+                                temp.attr('current_flow', parseInt(current_flow) + 1);
+                                temp.text(current_flow);
 
-                                // Switch to break
-                                Cookies.set('fflow', 200);
-                                Cookies.set('ccs', 400);
-                                $('.clock-toggle-inp').prop('checked', true);
+                                $.when(db.get('tasks', task_id).done(function(record) {
 
-                                $(document).trigger('flowbreakchange');
+                                    if (record != undefined) {
+                                        record['flow'] = current_flow;
+                                        // updating task db
+                                        db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
+                                            console.log(e);
+                                        });
+                                    }
 
-                            })
+                                })).done(function() {
+                                    /*
+                                         TODO:
+                                         1. Calculate Break timings (5, 8, 10, 20) \n
+                                         2. change to break
+                                      */
 
-                        });
+                                    // Switch to break
+                                    Cookies.set('fflow', 200);
+                                    Cookies.set('ccs', 400);
+                                    $('.clock-toggle-inp').prop('checked', true);
 
-                        put_data.fail(function(e) {
-                            console.log(e);
-                        });
+                                    $(document).trigger('flowbreakchange');
+
+                                })
+
+                            });
+
+                            put_data.fail(function(e) {
+                                console.log(e);
+                            });
 
 
-                    } else {
+                        } else {
 
-                        Cookies.set('fflow', 400);
-                        Cookies.set('ccs', 200);
-                        $('.clock-toggle-inp').prop('checked', false);
+                            Cookies.set('fflow', 400);
+                            Cookies.set('ccs', 200);
+                            $('.clock-toggle-inp').prop('checked', false);
 
-                        $(document).trigger('flowbreakchange');
+                            $(document).trigger('flowbreakchange');
 
-                    }
+                        }
+                    })
+
+
 
 
                 } else {
