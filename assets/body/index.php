@@ -83,6 +83,15 @@
 
 </section>
 
+<table id="report_log" class="table table-striped" style="width:100%;" data-bs-theme="dark">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+    </thead>
+
+</table>
 
 <div id="Taskdivi" class="m-5 me-0 ms-0" style="overflow-y: hidden;width: 100%;">
     <div class="row" style="overflow-y: hidden;">

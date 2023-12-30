@@ -28,6 +28,8 @@ $(document).ready(function() {
     if (Cookies.get('ccs') == undefined)
         Cookies.set('ccs', 200);
 
+    $('#report_log').hide();
+
     /*
 
      *** Clock Functionalites ****

@@ -1,128 +1,134 @@
-body {
-    background-color: black !important;
-}
-
-#container {
-    margin: 20px;
-    width: 450px;
-    height: 450px;
-}
-
-#runner {
-    font-size: 70px;
-    position: absolute;
-    translate: 0px -60px;
-}
-
-.flowfocus-title,
-.c-theme {
-    color: #428EED;
-}
-
-.start {
-    translate: 0px -160px;
-}
-
-.pause-reset {
-    position: absolute;
-    translate: 10px 70px;
-}
-
-.clock-current-task-div {
-    position: absolute;
-    translate: 0px -130px;
-    font-size: 30px;
-    color: #ffffff;
-}
-
-#stop-btn {
-    color: #F5F9FF;
-    text-align: center;
-    font-size: 21.5px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    background-color: rgba(255, 255, 255, 0);
-    width: 150px;
-    height: 60px;
-    border-radius: 40px;
-    border: 2px solid #3F8AEA;
-}
-
-.stop-clock:hover {
-    box-shadow: 0px 0px 20px 20px #2B3E5B;
-}
-
-.circle-halo {
-    position: absolute;
-    color: rgba(255, 255, 255, 0);
-    font-size: 450px;
-    box-shadow: 0px 0px 211px 20px #2B3E5B;
-    border-radius: 256px;
-    /* width: 451px; */
-    transform: translate(0px, -30px);
-}
-
-.swal2-popup {
-    /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(17.4px);
-    -webkit-backdrop-filter: blur(17.4px);
-}
-
-.popup-text-color {
-    color: white;
-}
-
-#dropdown-div {
-    display: flex;
-    justify-content: end;
-    position: sticky;
-    border-radius: 10px 10px 0px 0px;
-    /* background: #1F2733; */
-    transform: translateY(34px);
-}
-
-#dropdown-btn {
-    border: none;
-    background-color: rgba(255, 255, 255, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dropdown-menu {
-    border-radius: 10px;
-    border: none;
-    width: 100%;
-    position: absolute;
-    background: rgb(14, 18, 26);
-    color: white;
-}
-
-.dropdown-item {
-    color: white !important;
-}
-
-.task-dropdown-item {
-    color: white !important;
-}
-
-.task-id-div {
-    background: #1F2733;
-}
-
-.toggle-switch {
-    display: block;
-    width: 200px;
-    height: 200px;
-    border-radius: 1px;
-}
-
-
-/* .clock-toggle {
+    body {
+        background-color: black !important;
+    }
+    
+    #container {
+        margin: 20px;
+        width: 450px;
+        height: 450px;
+    }
+    
+    #runner {
+        font-size: 70px;
+        position: absolute;
+        translate: 0px -60px;
+    }
+    
+    .flowfocus-title,
+    .c-theme {
+        color: #428EED;
+    }
+    
+    .start {
+        translate: 0px -160px;
+    }
+    
+    .pause-reset {
+        position: absolute;
+        translate: 10px 70px;
+    }
+    
+    .clock-current-task-div {
+        position: absolute;
+        translate: 0px -130px;
+        font-size: 30px;
+        color: #ffffff;
+    }
+    
+    #stop-btn {
+        color: #F5F9FF;
+        text-align: center;
+        font-size: 21.5px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        background-color: rgba(255, 255, 255, 0);
+        width: 150px;
+        height: 60px;
+        border-radius: 40px;
+        border: 2px solid #3F8AEA;
+    }
+    
+    .stop-clock:hover {
+        box-shadow: 0px 0px 20px 20px #2B3E5B;
+    }
+    
+    .circle-halo {
+        position: absolute;
+        color: rgba(255, 255, 255, 0);
+        font-size: 450px;
+        box-shadow: 0px 0px 211px 20px #2B3E5B;
+        border-radius: 256px;
+        /* width: 451px; */
+        transform: translate(0px, -30px);
+    }
+    
+    .swal2-popup {
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(17.4px);
+        -webkit-backdrop-filter: blur(17.4px);
+    }
+    
+    .popup-text-color {
+        color: white;
+    }
+    
+    .table-show-dialogue {
+        color: white;
+    }
+    
+    .table-show-dialogue .swal2-title {
+        font-size: 15px;
+    }
+    
+    #dropdown-div {
+        display: flex;
+        justify-content: end;
+        position: sticky;
+        border-radius: 10px 10px 0px 0px;
+        /* background: #1F2733; */
+        transform: translateY(34px);
+    }
+    
+    #dropdown-btn {
+        border: none;
+        background-color: rgba(255, 255, 255, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .dropdown-menu {
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+        position: absolute;
+        background: rgb(14, 18, 26);
+        color: white;
+    }
+    
+    .dropdown-item {
+        color: white !important;
+    }
+    
+    .task-dropdown-item {
+        color: white !important;
+    }
+    
+    .task-id-div {
+        background: #1F2733;
+    }
+    
+    .toggle-switch {
+        display: block;
+        width: 200px;
+        height: 200px;
+        border-radius: 1px;
+    }
+    /* .clock-toggle {
     position: absolute;
     translate: 400px -115px;
 } */
