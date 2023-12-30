@@ -619,11 +619,11 @@ table.dataTable td {
 /* table inner element color */
 
 .table>:not(caption)>*>* {
-    background-color: black;
+    background-color: transparent;
 }
 
 .table>:not(caption)>*>*:hover {
-    background-color: transparent;
+    background-color: black;
 }
 
 .dataTables_wrapper .dataTables_info {

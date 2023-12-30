@@ -86,8 +86,10 @@
 <table id="report_log" class="table table-striped" style="width:100%;" data-bs-theme="dark">
     <thead>
         <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
+            <th>S no</th>
+            <th>Flow Number</th>
+            <th>Flow Time</th>
+            <th>Break Time</th>
         </tr>
     </thead>
 

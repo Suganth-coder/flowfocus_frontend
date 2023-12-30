@@ -2,6 +2,7 @@
 import 'ydn.db';
 import Cookies from 'js-cookie';
 import load_theme from './theme.js';
+import table_show from './table.js';
 
 $(document).ready(function() {
     /* 
@@ -54,6 +55,7 @@ $(document).ready(function() {
 
 
     let db = new ydn.db.Storage('flowfocus', schema);
+    table_show(db);
 
     $.get("./assets/templates/task.html", function(data) {
         let taskDiv = $('<div>').append($.parseHTML(data)).find('#taskholder');
@@ -62,7 +64,7 @@ $(document).ready(function() {
         $('.add_task_btn').click(function() {
             let task_name = $('.task_name_inp').val();
             let task_length = task_name.length;
-            let default_task_desp = "Task Description"
+            let default_task_desp = null;
 
             /*
                 1. checking length >0 &<=15
@@ -159,6 +161,12 @@ $(document).ready(function() {
                 db.remove("tasks", parseInt(task_id)).fail(function(e) {
                     console.log(e);
                 });
+
+                db.remove("report", parseInt(task_id)).fail(function(e) {
+                    console.log(e);
+                });
+
+
 
             });
         });
