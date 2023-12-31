@@ -138,8 +138,12 @@ $(document).ready(function() {
         $('#runner').runner('stop');
         bar.pause();
 
-        // change pause to continue
-        $(".pause-continue-img").attr("src", "./assets/image/start.svg");
+        if (String(Cookies.get('ccs', 400)) == '400')
+            $(".pause-continue-img").attr("src", "./assets/image/start-red.svg");
+
+        else
+            $(".pause-continue-img").attr("src", "./assets/image/start.svg");
+
         $('.pause').removeClass("pause").addClass("continue");
 
     })
@@ -154,13 +158,14 @@ $(document).ready(function() {
     })
 
     // flow-break change event
-    $(document).on('flowbreakchange', function() {
+    $(document).on('flowbreakchange', function(event, countdown = null) {
 
         if ($('.clock-toggle-inp').is(':checked')) {
             Cookies.set('ccs', 400);
 
             runner_config.countdown = true;
-            runner_config.startAt = 300000;
+            runner_config.startAt = (countdown == null) ? 300000 : parseInt(countdown);
+            runner_config.stopAt = 0;
 
             bar.set(1.0);
             $('#runner').runner(runner_config);
@@ -171,6 +176,7 @@ $(document).ready(function() {
             bar.set(0);
             runner_config.countdown = false;
             runner_config.startAt = 0;
+            runner_config.stopAt = null;
             $('#runner').runner(runner_config);
         }
 

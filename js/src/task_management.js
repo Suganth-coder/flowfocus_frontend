@@ -67,12 +67,12 @@ $(document).ready(function() {
             let default_task_desp = null;
 
             /*
-                1. checking length >0 &<=15
+                1. checking length >0 &<=25
                 2. storing the new task in the IndexDB 
                 3. appending the html to task_div
             */
 
-            if (task_length > 0 && task_length <= 15) {
+            if (task_length > 0 && task_length <= 30) {
 
                 let put_data = db.put('tasks', { task_name: task_name, task_description: default_task_desp, flow: 0 });
 
@@ -89,6 +89,9 @@ $(document).ready(function() {
                     $(".task-container").append(new_div).wait(500).after(function() {
                         new_div.find('.show-report').focus();
                     });
+
+                    // TODO: load_theme on certain condition
+                    load_theme();
                 })
 
                 put_data.fail(function(e) {
