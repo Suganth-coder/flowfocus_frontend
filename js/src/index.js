@@ -87,6 +87,9 @@ $(document).ready(function() {
 
     $('.start-div').delegate('.start', 'click', function() {
 
+        $(this).uiSound({
+            play: "beat-click"
+        });
 
         let ccs = String(Cookies.get('ccs'));
 
@@ -124,6 +127,11 @@ $(document).ready(function() {
     })
 
     $('.pause-reset').delegate('.continue', 'click', function() {
+
+        $(this).uiSound({
+            play: "keyup"
+        });
+
         $('#runner').runner('start');
         bar.resume();
 
@@ -135,6 +143,11 @@ $(document).ready(function() {
 
 
     $('.pause-reset').delegate('.pause', 'click', function() {
+
+        $(this).uiSound({
+            play: "keyup"
+        });
+
         $('#runner').runner('stop');
         bar.pause();
 
@@ -169,6 +182,8 @@ $(document).ready(function() {
 
             bar.set(1.0);
             $('#runner').runner(runner_config);
+            $(document).prop('title', 'BreakTime 💔');
+
 
         } else {
             Cookies.set('ccs', 200);
@@ -178,6 +193,8 @@ $(document).ready(function() {
             runner_config.startAt = 0;
             runner_config.stopAt = null;
             $('#runner').runner(runner_config);
+            $(document).prop('title', 'FlowTime 🌊');
+
         }
 
 
@@ -188,6 +205,9 @@ $(document).ready(function() {
     // toggle change
     $('.clock-toggle-inp').on('change', function() {
 
+        $(this).uiSound({
+            play: "error"
+        });
 
         if ($('#runner').runner('info').running == true) {
             Swal.fire({
@@ -240,5 +260,13 @@ $(document).ready(function() {
 
     // custom break logic
     custom_break();
+
+    $(".keyup").keyup(function() {
+
+        // TODO: break to flow switch  sound
+        $(this).uiSound({
+            play: "info"
+        });
+    });
 
 })

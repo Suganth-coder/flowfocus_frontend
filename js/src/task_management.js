@@ -109,7 +109,12 @@ $(document).ready(function() {
                     title: 'Error!',
                     text: task_length == 0 ? "Enter the Task Name" : "Task Name is too much long :(",
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Cool',
+                    didOpen: () => {
+                        $(this).uiSound({
+                            play: "warning"
+                        });
+                    }
                 });
             }
         });
@@ -254,7 +259,12 @@ $(document).ready(function() {
                             title: 'Not yet Started',
                             text: (String(Cookies.get('ccs')) == '200') ? "Flowtime not yet started" : "Breaktime not yet started",
                             icon: 'warning',
-                            confirmButtonText: 'okay'
+                            confirmButtonText: 'okay',
+                            didOpen: () => {
+                                $(this).uiSound({
+                                    play: "warning"
+                                });
+                            }
                         });
                         return;
                     }

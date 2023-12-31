@@ -83,8 +83,6 @@
 </section>
 
 
-
-
 <table id="report_log" class="table table-striped" style="width:100%;" data-bs-theme="dark">
     <thead>
         <tr>

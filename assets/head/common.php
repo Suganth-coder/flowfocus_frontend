@@ -2,5 +2,6 @@
 
 <script src="./node_modules/jquery.runner/build/jquery.runner-min.js"></script>
 <script src="./node_modules/progressbar.js/dist/progressbar.min.js"></script>
-<script src="./js/lib/jquery.wait.js"></script>
 
+<script src="./js/lib/jquery.wait.js"></script>
+<script src="./js/lib/jquery.ui.sound.js"></script>
