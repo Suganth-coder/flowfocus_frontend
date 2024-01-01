@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 $(document).ready(function() {
 
 
@@ -18,7 +20,12 @@ $(document).ready(function() {
                     const gs_div = Swal.getPopup().querySelector(".get-started");
                     $(gs_div).append(getStarted);
                 }
-            });
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    Cookies.set('ift', 400);
+                }
+            });;
         }
 
         $(".get-started").click(function() {
@@ -26,6 +33,8 @@ $(document).ready(function() {
         });
 
         //TODO: automatically show if they visit the flowfocus for the first time
+        if (String(Cookies.get('ift')) == '200')
+            showStarted();
 
     })
 });

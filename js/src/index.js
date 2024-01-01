@@ -29,6 +29,9 @@ $(document).ready(function() {
     if (Cookies.get('ccs') == undefined)
         Cookies.set('ccs', 200);
 
+    if (Cookies.get('ift') == undefined)
+        Cookies.set('ift', 200)
+
     $('#report_log').hide();
 
     /*

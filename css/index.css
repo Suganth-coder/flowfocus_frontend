@@ -191,3 +191,16 @@
         backdrop-filter: blur(50.4px);
         -webkit-backdrop-filter: blur(50.4px);
     }
+    
+    .gt-high-1 {
+        color: #3F8AEA;
+    }
+    
+    .gt-high-2 {
+        color: #ea3f64;
+    }
+    
+    .g-heading {
+        margin: 20px;
+        color: white;
+    }
