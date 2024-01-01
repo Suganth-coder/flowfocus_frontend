@@ -174,6 +174,12 @@ $(document).ready(function() {
                     console.log(e);
                 });
 
+                // Removing the cst cookie if selected
+                if (String(task_id) == String(Cookies.get('cst')))
+                    Cookies.remove('cst')
+
+                if (String($('.clock-current-task-div').attr('task_id')) == String(task_id))
+                    $('.clock-current-task-div').text('');
 
 
             });
@@ -212,8 +218,9 @@ $(document).ready(function() {
                 2. Storing the current task id in cookie
             */
 
-            let task_name = $(this).find('.task-name').val();
-            let outer_this = this;
+            let task_name = $(this).find('.task-name').val(),
+                task_id = $(this).find('.task-id-div').attr('task_id'),
+                outer_this = this;
 
             $('.task-card').each(function() {
                 if (this == outer_this)
@@ -222,8 +229,9 @@ $(document).ready(function() {
                 else
                     $(this).find('.task-id-div').css('background', '#1F2733');
             });
-            $('.clock-current-task-div').text(task_name);
-            Cookies.set('cst', $(this).find('.task-id-div').attr('task_id'), { sameSite: 'strict' })
+
+            $('.clock-current-task-div').text(task_name).attr('task_id', task_id);
+            Cookies.set('cst', task_id, { sameSite: 'strict' })
         });
 
         // task synchornization
@@ -233,9 +241,11 @@ $(document).ready(function() {
                 2. If cst, update the IndexDB
                 3. Else show dialog box
             */
-            let task_id = parseInt(Cookies.get('cst'));
+            let task_id = Cookies.get('cst');
 
             if (task_id != undefined) {
+
+                task_id = parseInt(task_id);
                 let val = $("#runner").text();
                 if ($(".task-id-" + task_id).length != 0) {
 
@@ -292,7 +302,6 @@ $(document).ready(function() {
 
                         if (String(Cookies.get('ccs')) == "200") {
 
-                            console.log(put_data);
                             // if flow
                             put_data.done(function(key) {
                                 let temp = $('.task-id-' + task_id).find('.task-flow-count');
@@ -351,7 +360,20 @@ $(document).ready(function() {
                 }
 
             } else {
-                // TODO: no current task element selected
+                Swal.fire({
+                    customClass: {
+                        popup: 'popup-text-color',
+                    },
+                    title: 'Select the task :(',
+                    text: "No task element is selected. Kindly, select the task",
+                    icon: 'warning',
+                    confirmButtonText: 'okay',
+                    didOpen: () => {
+                        $(this).uiSound({
+                            play: "warning"
+                        });
+                    }
+                });
             }
         });
 

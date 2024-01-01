@@ -193,7 +193,7 @@ $(document).ready(function() {
             runner_config.startAt = 0;
             runner_config.stopAt = null;
             $('#runner').runner(runner_config);
-            $(document).prop('title', 'FlowTime 🌊');
+            $(document).prop('title', 'FlowTime 💧');
 
         }
 
