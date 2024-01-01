@@ -261,12 +261,7 @@ $(document).ready(function() {
     // custom break logic
     custom_break();
 
-    $(".keyup").keyup(function() {
 
-        // TODO: break to flow switch  sound
-        $(this).uiSound({
-            play: "info"
-        });
-    });
+
 
 })

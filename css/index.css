@@ -168,3 +168,26 @@
         color: white;
         opacity: 0.5;
     }
+    
+    .g-image {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .popup-text-color {
+        color: white;
+    }
+    
+    .g-content {
+        font-size: 18px;
+        text-align: justify;
+        padding: 5%;
+        color: white;
+        /* Prevent text from wrapping */
+    }
+    
+    .getstarted-popup {
+        width: 800px;
+        backdrop-filter: blur(50.4px);
+        -webkit-backdrop-filter: blur(50.4px);
+    }
