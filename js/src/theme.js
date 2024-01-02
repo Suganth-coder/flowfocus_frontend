@@ -20,8 +20,24 @@ export default function load_theme() {
         start_src = './assets/image/start-red.svg';
         stop_border = '#ea3f64';
         btn_color = '#c22748';
+
     } else {
-        // flow
+
+        if (cth != 'os') {
+            if (cth == 'fg') {
+                circle_halo = '#2d5b2b';
+                start_src = './assets/image/start-green.svg';
+                stop_border = '#4a6741';
+                btn_color = '#3f5a36';
+
+            } else if (cth == 'ys') {
+                circle_halo = '#5b592b';
+                start_src = './assets/image/start-yellow.svg';
+                stop_border = '#e1af47';
+                btn_color = '#d39b22';
+            }
+        } else
+            cth = "os";
     }
 
     $('.circle-halo').css({ "box-shadow": `0px 0px 211px 20px ${circle_halo}` });
@@ -50,6 +66,9 @@ export default function load_theme() {
     }, function() {
         $(this).css({ "box-shadow": "none" });
     });
+
+    // $('.bg, .dropdown-item:active, .dropdown-item:hover, .dropdown-item:focus').css({ 'background-color': stop_border })
+    $('.theme-value').text($(`.theme-change[theme="${cth}"]`).text());
 
 
 };

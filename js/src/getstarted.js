@@ -5,7 +5,6 @@ $(document).ready(function() {
 
     $.get("./assets/templates/get-started.html", function(data) {
         let getStarted = $('<div>').append($.parseHTML(data)).find('.get-started');
-        console.log(getStarted.prop('outerHTML'));
 
         let showStarted = () => {
             Swal.fire({
@@ -32,7 +31,6 @@ $(document).ready(function() {
             showStarted();
         });
 
-        //TODO: automatically show if they visit the flowfocus for the first time
         if (String(Cookies.get('ift')) == '200')
             showStarted();
 

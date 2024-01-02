@@ -109,7 +109,7 @@ $(document).ready(function() {
                     title: 'Error!',
                     text: task_length == 0 ? "Enter the Task Name" : "Task Name is too much long :(",
                     icon: 'error',
-                    confirmButtonText: 'Cool',
+                    confirmButtonText: 'okay',
                     didOpen: () => {
                         $(this).uiSound({
                             play: "warning"

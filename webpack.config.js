@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = [{
-        entry: ['./js/src/index-obfuscated.js', './js/src/getstarted-obfuscated.js'],
+        entry: ['./js/src/index-obfuscated.js', './js/src/getstarted-obfuscated.js', './js/src/feedback-obfuscated.js'],
         output: {
             filename: 'index.js',
             path: path.resolve(__dirname, 'js'),

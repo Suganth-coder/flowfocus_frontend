@@ -24,7 +24,7 @@ Cookies info
 $(document).ready(function() {
 
     if (Cookies.get('cth') == undefined)
-        Cookies.set('cth', 'os');
+        Cookies.set('cth', '325');
 
     if (Cookies.get('ccs') == undefined)
         Cookies.set('ccs', 200);
@@ -86,6 +86,7 @@ $(document).ready(function() {
         }
 
     };
+
     $('#runner').runner(runner_config);
 
     $('.start-div').delegate('.start', 'click', function() {
@@ -105,6 +106,7 @@ $(document).ready(function() {
 
         } else {
 
+            console.log($('#runner').runner('info'));
             bar.animate(-0.0, {
                 duration: runner_config.startAt,
                 from: {
@@ -112,7 +114,9 @@ $(document).ready(function() {
                 },
                 to: { color: '#ff4f4f' },
                 step: function(state, circle, attachment) {
+
                     circle.path.setAttribute('stroke', state.color);
+
                 }
             });
         }
@@ -157,8 +161,16 @@ $(document).ready(function() {
         if (String(Cookies.get('ccs', 400)) == '400')
             $(".pause-continue-img").attr("src", "./assets/image/start-red.svg");
 
-        else
-            $(".pause-continue-img").attr("src", "./assets/image/start.svg");
+        else {
+
+            let cth = Cookies.get('cth');
+
+            if (cth != "os")
+                src = (cth == "fs") ? "./assets/image/start-green.svg" : "./assets/image/start-yellow.svg";
+            else
+                $(".pause-continue-img").attr("src", "./assets/image/start.svg");
+
+        }
 
         $('.pause').removeClass("pause").addClass("continue");
 
@@ -172,6 +184,13 @@ $(document).ready(function() {
         $('.pause-reset').addClass('d-none');
 
     })
+
+    // runner finished
+    $('#runner').on('runnerFinish', function() {
+        $(this).uiSound({
+            play: "finished"
+        });
+    });
 
     // flow-break change event
     $(document).on('flowbreakchange', function(event, countdown = null) {
@@ -242,9 +261,7 @@ $(document).ready(function() {
             });
         } else {
 
-            if ($('.clock-toggle-inp').is(':checked')) {
-                Cookies.set('fflow', 400)
-            }
+            Cookies.set('fflow', 400);
             $(document).trigger('flowbreakchange');
 
 
@@ -265,6 +282,33 @@ $(document).ready(function() {
     custom_break();
 
 
+    // theme change
+    $('.theme-change').click(function() {
+        /*
+            change the text() of theme-value \n
+        */
+        let theme = $(this).attr('theme');
+        Cookies.set('cth', theme);
+
+        if (String(Cookies.get('ccs')) != '200') {
+            Swal.fire({
+                customClass: {
+                    popup: 'popup-text-color',
+                    confirmButton: 'popup-default-confirm'
+                },
+                title: 'Back to Flow!',
+                text: "Go back to flow state to change theme effect :)",
+                icon: 'info',
+                confirmButtonText: 'okay',
+                didOpen: () => {
+                    $(this).uiSound({
+                        play: "warning"
+                    });
+                }
+            });
+        }
+        load_theme();
+    });
 
 
 })
