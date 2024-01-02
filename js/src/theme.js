@@ -44,7 +44,7 @@ export default function load_theme() {
     $('.start').attr('src', start_src);
     $('#stop-btn, #navdrop').css({ "border": `2px solid ${stop_border}` });
     $('#loginnav').css({ 'background': stop_border, "border": `2px solid ${stop_border}` });
-    $('.flowfocus-title, .c-theme, .dropdown-toggle').css({ 'color': stop_border });
+    $('.flowfocus-title, .c-theme, .dropdown-toggle, .fb-title').css({ 'color': stop_border });
 
     $(".flow-icon svg").each(function() {
         $(this).css("fill", stop_border);
@@ -69,6 +69,7 @@ export default function load_theme() {
 
     // $('.bg, .dropdown-item:active, .dropdown-item:hover, .dropdown-item:focus').css({ 'background-color': stop_border })
     $('.theme-value').text($(`.theme-change[theme="${cth}"]`).text());
+
 
 
 };

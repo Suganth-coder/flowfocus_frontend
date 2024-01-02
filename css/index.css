@@ -192,6 +192,11 @@
         -webkit-backdrop-filter: blur(50.4px);
     }
     
+    .feedback-popup {
+        backdrop-filter: blur(40.4px);
+        -webkit-backdrop-filter: blur(40.4px);
+    }
+    
     .gt-high-1 {
         color: #3F8AEA;
     }
@@ -207,4 +212,40 @@
     
     .geS5n {
         background: transparent;
+    }
+    
+    .feedback {
+        font-size: 18px;
+        color: white;
+    }
+    
+    .fb-input {
+        background: transparent;
+        color: white;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid white;
+        padding: 2px;
+    }
+    
+    .fb-input::placeholder {
+        color: white;
+        opacity: 0.5;
+    }
+    
+    .fb-input:focus {
+        border: 1px solid white;
+    }
+    
+    .fb-input-big {
+        height: 150px;
+        width: 400px;
+    }
+    
+    .inp-grp label {
+        margin-bottom: 10px;
+    }
+    
+    .fb-title {
+        color: #ea3f64;
     }
