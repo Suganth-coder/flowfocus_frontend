@@ -6,7 +6,7 @@ $(document).ready(function() {
         let getStarted = $('<div>').append($.parseHTML(data)).find('.feedback');
         getStarted.find('.fb-loading').hide();
 
-        let base_url = "http://localhost:8081/"
+        let base_url = "http://localhost:8081/";
 
         let showStarted = () => {
             Swal.fire({
