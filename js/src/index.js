@@ -121,10 +121,13 @@ $(document).ready(function() {
                 to: { color: '#418DEC' },
                 duration: 3600000
             }, function() {
-                bar.set(0);
-                setTimeout(function() {
-                    $('.start').trigger('click');
-                }, 1000);
+
+                if ($('#runner').runner('info').running == true) {
+                    bar.set(0);
+                    setTimeout(function() {
+                        $('.start').trigger('click');
+                    }, 1000);
+                }
             });
 
 
@@ -253,10 +256,10 @@ $(document).ready(function() {
                 customClass: {
                     popup: 'popup-text-color',
                 },
-                title: 'Switch?',
-                text: (String(Cookies.get('ccs')) == '200') ? "Do you wanna switch to break?" : "Do you wanna switch to flow?",
+                title: (String(Cookies.get('ccs')) == '200') ? "Do you wanna switch to break?" : "Do you wanna switch to flow?",
+                text: 'Time will be not record. Click Stop button to record time and switch',
                 icon: 'warning',
-                confirmButtonText: 'okay',
+                confirmButtonText: 'switch',
                 showCancelButton: true
             }).then((result) => {
                 if (result.isDismissed) {

@@ -287,7 +287,7 @@ $(document).ready(function() {
                             return;
                         }
                     }
-
+                    $('.reset').trigger('click');
 
                     // Storing the log in report db and task db 
                     var put_data;
@@ -373,7 +373,7 @@ $(document).ready(function() {
 
                         }
 
-                        $('.reset').trigger('click');
+
                     })
 
 
