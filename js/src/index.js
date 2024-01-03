@@ -44,10 +44,12 @@ $(document).ready(function() {
      */
     var bar = new ProgressBar.Circle(".clockcontainer", {
         strokeWidth: 9,
-        duration: 3600000 * 5,
+        duration: 3600000,
         step: function(state, bar, attachment) {
             bar.path.setAttribute('stroke', state.color);
-            //TODO: reset when it comes to 1 as of now, bar value is set to 5.0
+            let c_time = $('#runner').runner('info').time;
+
+
         },
         trailColor: '#D5E6FA',
         trailWidth: 9,
@@ -88,9 +90,22 @@ $(document).ready(function() {
     };
 
     $('#runner').runner(runner_config);
+    // runner finished
+    $('#runner').on('runnerFinish', function() {
+
+        if (String(Cookies.get('ccs')) == '400') {
+            $(this).uiSound({
+                play: "finished"
+            });
+
+            $(document).trigger('stopclockclick', ['200']);
+        }
+
+    });
 
     $('.start-div').delegate('.start', 'click', function() {
 
+        bar.trail.setAttribute('stroke', '#D5E6FA');
         $(this).uiSound({
             play: "beat-click"
         });
@@ -99,10 +114,19 @@ $(document).ready(function() {
 
         if (ccs == "200") {
 
-            bar.animate(5.0, {
+
+            // reset of the bar
+            bar.animate(1, {
                 from: { color: '#54B4F3' },
-                to: { color: '#418DEC' }
+                to: { color: '#418DEC' },
+                duration: 3600000
+            }, function() {
+                bar.set(0);
+                setTimeout(function() {
+                    $('.start').trigger('click');
+                }, 1000);
             });
+
 
         } else {
 
@@ -184,18 +208,6 @@ $(document).ready(function() {
 
     })
 
-    // runner finished
-    $('#runner').on('runnerFinish', function() {
-
-        if (String(Cookies.get('ccs')) == '400') {
-            $(this).uiSound({
-                play: "finished"
-            });
-
-            $(document).trigger('stopclockclick', ['200']);
-        }
-
-    });
 
     // flow-break change event
     $(document).on('flowbreakchange', function(event, countdown = null) {

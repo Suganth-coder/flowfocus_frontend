@@ -236,10 +236,11 @@ $(document).ready(function() {
 
         // task synchornization
         $('.stop-clock').click(function() {
-            $(document).trigger('stopclockclick');
+            let c_time = $('#runner').runner('info').time;
+            $(document).trigger('stopclockclick', ['400', c_time]);
         })
 
-        $(document).on('stopclockclick', function(event, finished = '400') {
+        $(document).on('stopclockclick', function(event, finished = '400', c_time = null) {
             /*
                 1. check cookie cst, css
                 2. If cst, update the IndexDB
@@ -288,8 +289,6 @@ $(document).ready(function() {
                     }
 
 
-                    $('.reset').trigger('click');
-
                     // Storing the log in report db and task db 
                     var put_data;
                     $.when(db.get('report', task_id).done(function(record) {
@@ -335,12 +334,25 @@ $(document).ready(function() {
                                          2. change to break
                                       */
 
+                                    let break_time = 300000;
+                                    if (c_time != null) {
+                                        // TODO: calculate custom break
+                                        if (c_time >= 0 && c_time <= 1500000)
+                                            break_time = 300000;
+                                        else if (c_time > 1500000 && c_time <= 3000000)
+                                            break_time = 480000;
+                                        else if (c_time > 3000000 && c_time <= 5400000)
+                                            break_time = 600000;
+                                        else
+                                            break_time = 900000;
+                                    }
+
                                     // Switch to break
                                     Cookies.set('fflow', 200);
                                     Cookies.set('ccs', 400);
                                     $('.clock-toggle-inp').prop('checked', true);
 
-                                    $(document).trigger('flowbreakchange');
+                                    $(document).trigger('flowbreakchange', break_time);
 
                                 })
 
@@ -360,6 +372,8 @@ $(document).ready(function() {
                             $(document).trigger('flowbreakchange');
 
                         }
+
+                        $('.reset').trigger('click');
                     })
 
 
