@@ -55,7 +55,9 @@
     </div>
 
     <!-- loader -->
-    <span class="loader"></span>
+    <div class="loader-container">
+        <span class="loader"></span>
+    </div>
 
 
     <!-- clock container -->
