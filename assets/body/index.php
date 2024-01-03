@@ -55,7 +55,7 @@
     </div>
 
     <!-- loader -->
-    <div class="loader-container">
+    <div class="loader-container page-loader">
         <span class="loader"></span>
     </div>
 

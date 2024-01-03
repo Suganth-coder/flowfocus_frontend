@@ -106,7 +106,6 @@ $(document).ready(function() {
 
         } else {
 
-            console.log($('#runner').runner('info'));
             bar.animate(-0.0, {
                 duration: runner_config.startAt,
                 from: {
@@ -187,9 +186,15 @@ $(document).ready(function() {
 
     // runner finished
     $('#runner').on('runnerFinish', function() {
-        $(this).uiSound({
-            play: "finished"
-        });
+
+        if (String(Cookies.get('ccs')) == '400') {
+            $(this).uiSound({
+                play: "finished"
+            });
+
+            $(document).trigger('stopclockclick', ['200']);
+        }
+
     });
 
     // flow-break change event
@@ -323,6 +328,7 @@ $(document).ready(function() {
         });
     });
 
+    // notification click
     $('.notification').click(function() {
         Swal.fire({
             customClass: {
@@ -335,5 +341,8 @@ $(document).ready(function() {
         });
     })
 
-
-})
+    // loading 
+    window.onload = function() {
+        $('.page-loader').hide();
+    }
+});

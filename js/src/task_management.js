@@ -236,11 +236,16 @@ $(document).ready(function() {
 
         // task synchornization
         $('.stop-clock').click(function() {
+            $(document).trigger('stopclockclick');
+        })
+
+        $(document).on('stopclockclick', function(event, finished = '400') {
             /*
                 1. check cookie cst, css
                 2. If cst, update the IndexDB
                 3. Else show dialog box
             */
+
             let task_id = Cookies.get('cst');
 
             if (task_id != undefined) {
@@ -254,30 +259,35 @@ $(document).ready(function() {
                         breaktime = "00:00:00";
 
                     if (String(Cookies.get('ccs')) != '200') {
-                        breaktime = val;
+                        let info = $('#runner').runner('info');
+                        breaktime = info.settings.format(info.settings.startAt);
                         flowtime = "00:00:00";
 
                         if (String(Cookies.get('fflow')) == '200')
                             current_flow = current_flow - 1;
                     }
 
-                    if ($('#runner').runner('info').running == false) {
-                        Swal.fire({
-                            customClass: {
-                                popup: 'popup-text-color',
-                            },
-                            title: 'Not yet Started',
-                            text: (String(Cookies.get('ccs')) == '200') ? "Flowtime not yet started" : "Breaktime not yet started",
-                            icon: 'warning',
-                            confirmButtonText: 'okay',
-                            didOpen: () => {
-                                $(this).uiSound({
-                                    play: "warning"
-                                });
-                            }
-                        });
-                        return;
+                    if (finished == '400') {
+                        if ($('#runner').runner('info').running == false) {
+                            Swal.fire({
+                                customClass: {
+                                    popup: 'popup-text-color',
+                                },
+                                title: 'Not yet Started',
+                                text: (String(Cookies.get('ccs')) == '200') ? "Flowtime not yet started" : "Breaktime not yet started",
+                                icon: 'warning',
+                                confirmButtonText: 'okay',
+                                didOpen: () => {
+                                    $(this).uiSound({
+                                        play: "warning"
+                                    });
+                                }
+                            });
+                            return;
+                        }
                     }
+
+
                     $('.reset').trigger('click');
 
                     // Storing the log in report db and task db 
