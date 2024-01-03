@@ -31,7 +31,7 @@
     <!-- clock container -->
     <section class="text-white py-4 py-xl-5 clock-container" id="clockcontainer">
         <div class="container d-flex flex-row justify-content-center align-items-center">
-            <div id="sugo" class="d-flex flex-column justify-content-center align-items-center p-4 py-5" style="height: 500px;width: 500px;">
+            <div id="sugo" class="d-flex flex-column justify-content-center align-items-center p-4 py-5" style="height: 500px;width: 500px;transform:scale(1.1)">
                 <svg class="bi bi-circle-fill circle-halo" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
                     <circle cx="8" cy="8" r="8"></circle>
                 </svg>
