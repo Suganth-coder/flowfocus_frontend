@@ -44,10 +44,10 @@ $(document).ready(function() {
      */
     var bar = new ProgressBar.Circle(".clockcontainer", {
         strokeWidth: 9,
-        duration: 3600000,
+        duration: 3600000 * 5,
         step: function(state, bar, attachment) {
             bar.path.setAttribute('stroke', state.color);
-            //TODO: reset when it comes to 1
+            //TODO: reset when it comes to 1 as of now, bar value is set to 5.0
         },
         trailColor: '#D5E6FA',
         trailWidth: 9,
@@ -99,7 +99,7 @@ $(document).ready(function() {
 
         if (ccs == "200") {
 
-            bar.animate(1.0, {
+            bar.animate(5.0, {
                 from: { color: '#54B4F3' },
                 to: { color: '#418DEC' }
             });
@@ -297,7 +297,7 @@ $(document).ready(function() {
                     confirmButton: 'popup-default-confirm'
                 },
                 title: 'Back to Flow!',
-                text: "Go back to flow state to change theme effect :)",
+                text: "Go back to flow state to see the theme effect",
                 icon: 'info',
                 confirmButtonText: 'okay',
                 didOpen: () => {
@@ -309,6 +309,31 @@ $(document).ready(function() {
         }
         load_theme();
     });
+
+    // login btn
+    $('.login-btn').click(function() {
+        Swal.fire({
+            customClass: {
+                popup: 'popup-text-color',
+                confirmButton: 'popup-default-confirm'
+            },
+            title: "Will be Soon!",
+            text: "You can use our beta version without login functionality.",
+            icon: "info"
+        });
+    });
+
+    $('.notification').click(function() {
+        Swal.fire({
+            customClass: {
+                popup: 'popup-text-color',
+                confirmButton: 'popup-default-confirm'
+            },
+            title: "No Notification!",
+            text: "We will notify if any :)",
+            icon: "info"
+        });
+    })
 
 
 })

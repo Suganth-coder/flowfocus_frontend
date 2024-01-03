@@ -13,7 +13,7 @@
 .dropdown-item:active {
     color: var(--bs-dropdown-link-active-color);
     text-decoration: none;
-    background-color: #1b8df5 !important;
+    /* background-color: #1b8df5 !important; */
 }
 
 .dropdown-item:focus,

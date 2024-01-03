@@ -67,9 +67,11 @@ export default function load_theme() {
         $(this).css({ "box-shadow": "none" });
     });
 
-    // $('.bg, .dropdown-item:active, .dropdown-item:hover, .dropdown-item:focus').css({ 'background-color': stop_border })
+    $('.bg').css({ 'background-color': stop_border })
     $('.theme-value').text($(`.theme-change[theme="${cth}"]`).text());
 
-
+    $('.stop-color-1-svg, .stop-color-2-svg').each(function() {
+        $(this).attr('stop-color', stop_border);
+    })
 
 };

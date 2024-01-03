@@ -249,7 +249,16 @@
     .fb-title {
         color: #ea3f64;
     }
-
-    .footer{
+    
+    .footer {
         background-color: black !important;
+    }
+    
+    .hg-nav {
+        color: #4C9FED;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-decoration: none;
     }
