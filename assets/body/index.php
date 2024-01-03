@@ -3,7 +3,7 @@
         <div class="container-fluid"><a class="navbar-brand d-flex align-items-center pe-0 me-5" href="#"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon flow-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-fire mainlogo">
                         <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16Zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15Z"></path>
                     </svg></span><span style="font-style: normal;line-height: normal;font-size: 24px;font-weight: 500;" class="flowfocus-title">FLOWFOCUS</span></a>
-            <div class="nearthelogo"><a href="#" style="color: #4C9FED;font-size: 18px;font-style: normal;font-weight: 700;line-height: normal;text-decoration: none;">Timer</a><a class="norlinktop feedback-btn" href="#">Tasks</a><a class="norlinktop get-started" href="#">Get Started</a></div><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 32px;color: rgb(255,255,255);">
+            <div class="nearthelogo"><a href="#" style="color: #4C9FED;font-size: 18px;font-style: normal;font-weight: 700;line-height: normal;text-decoration: none;">Timer</a><a class="norlinktop" href="#">Tasks</a><a class="norlinktop get-started" href="#">Get Started</a></div><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 32px;color: rgb(255,255,255);">
     <path d="M2 6C2 5.44772 2.44772 5 3 5H21C21.5523 5 22 5.44772 22 6C22 6.55228 21.5523 7 21 7H3C2.44772 7 2 6.55228 2 6Z" fill="currentColor"></path>
     <path d="M2 12.0322C2 11.4799 2.44772 11.0322 3 11.0322H21C21.5523 11.0322 22 11.4799 22 12.0322C22 12.5845 21.5523 13.0322 21 13.0322H3C2.44772 13.0322 2 12.5845 2 12.0322Z" fill="currentColor"></path>
     <path d="M3 17.0645C2.44772 17.0645 2 17.5122 2 18.0645C2 18.6167 2.44772 19.0645 3 19.0645H21C21.5523 19.0645 22 18.6167 22 18.0645C22 17.5122 21.5523 17.0645 21 17.0645H3Z" fill="currentColor"></path>
@@ -134,7 +134,7 @@
 
 <footer class="text-center bg-dark p-1 mt-1 footer" style="border-top: 1.5px solid var(--bs-secondary-text-emphasis);">
     <div class="container text-white py-2 py-lg-2">
-        <p class="text-muted mb-0 p-3"><span style="color: rgba(255, 255, 255, 0.75) ; font-size:20px">Copyright © 2024 Brand</span></p>
+        <p class="text-muted mb-0 p-3"><span style="color: rgba(255, 255, 255, 0.75) ; font-size:20px">Copyright © Phoenitags Innovations</span></p>
         <ul class="list-inline">
             <li class="list-inline-item me-4"><svg class="bi bi-facebook text-light" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size:20px">
                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
@@ -149,4 +149,4 @@
     </div>
 </footer>
 
-<a class="border rounded d-inline scroll-to-top" href="#page-top"><p>Feedback</p></i></a>
+<a class="border rounded d-inline scroll-to-top feedback-btn" href="#page-top"><p>Feedback</p></i></a>

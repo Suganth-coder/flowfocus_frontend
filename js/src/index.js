@@ -24,7 +24,7 @@ Cookies info
 $(document).ready(function() {
 
     if (Cookies.get('cth') == undefined)
-        Cookies.set('cth', '325');
+        Cookies.set('cth', 'os');
 
     if (Cookies.get('ccs') == undefined)
         Cookies.set('ccs', 200);
