@@ -2,6 +2,10 @@ import Cookies from 'js-cookie';
 
 $(document).ready(function() {
 
+    // Cookies settings
+    let domain_name = 'localhost';
+    const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
+
     let base_url = "http://localhost:8081/";
 
     $.get("./assets/templates/get-started.html", function(data) {
@@ -23,7 +27,7 @@ $(document).ready(function() {
             }).then((result) => {
 
                 if (result.isConfirmed) {
-                    Cookies.set('ift', 400);
+                    fCookies.set('ift', 400);
                 }
             });;
         }
@@ -32,7 +36,7 @@ $(document).ready(function() {
             showStarted();
         });
 
-        if (String(Cookies.get('ift')) == '200') {
+        if (String(fCookies.get('ift')) == '200') {
 
             showStarted();
 

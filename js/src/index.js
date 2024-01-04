@@ -23,14 +23,18 @@ Cookies info
 */
 $(document).ready(function() {
 
-    if (Cookies.get('cth') == undefined)
-        Cookies.set('cth', 'os');
+    // Cookies settings
+    let domain_name = 'localhost';
+    const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
 
-    if (Cookies.get('ccs') == undefined)
-        Cookies.set('ccs', 200);
+    if (fCookies.get('cth') == undefined)
+        fCookies.set('cth', 'os');
 
-    if (Cookies.get('ift') == undefined)
-        Cookies.set('ift', 200)
+    if (fCookies.get('ccs') == undefined)
+        fCookies.set('ccs', 200);
+
+    if (fCookies.get('ift') == undefined)
+        fCookies.set('ift', 200)
 
     $('#report_log').hide();
 
@@ -93,7 +97,7 @@ $(document).ready(function() {
     // runner finished
     $('#runner').on('runnerFinish', function() {
 
-        if (String(Cookies.get('ccs')) == '400') {
+        if (String(fCookies.get('ccs')) == '400') {
             $(this).uiSound({
                 play: "finished"
             });
@@ -110,11 +114,11 @@ $(document).ready(function() {
             play: "beat-click"
         });
 
-        let ccs = String(Cookies.get('ccs'));
+        let ccs = String(fCookies.get('ccs'));
 
         if (ccs == "200") {
 
-            let cth = Cookies.get('cth'),
+            let cth = fCookies.get('cth'),
                 from_color = '#54B4F3',
                 to_color = '#418DEC';
             if (cth != 'os') {
@@ -197,12 +201,12 @@ $(document).ready(function() {
         $('#runner').runner('stop');
         bar.pause();
 
-        if (String(Cookies.get('ccs', 400)) == '400')
+        if (String(fCookies.get('ccs', 400)) == '400')
             $(".pause-continue-img").attr("src", "./assets/image/start-red.svg");
 
         else {
 
-            let cth = Cookies.get('cth');
+            let cth = fCookies.get('cth');
             let src = "./assets/image/start.svg";
 
             if (cth != "os")
@@ -231,7 +235,7 @@ $(document).ready(function() {
     $(document).on('flowbreakchange', function(event, countdown = null) {
 
         if ($('.clock-toggle-inp').is(':checked')) {
-            Cookies.set('ccs', 400);
+            fCookies.set('ccs', 400);
 
             runner_config.countdown = true;
             runner_config.startAt = (countdown == null) ? 300000 : parseInt(countdown);
@@ -243,7 +247,7 @@ $(document).ready(function() {
 
 
         } else {
-            Cookies.set('ccs', 200);
+            fCookies.set('ccs', 200);
 
             bar.set(0);
             runner_config.countdown = false;
@@ -271,7 +275,7 @@ $(document).ready(function() {
                 customClass: {
                     popup: 'popup-text-color',
                 },
-                title: (String(Cookies.get('ccs')) == '200') ? "Do you wanna switch to break?" : "Do you wanna switch to flow?",
+                title: (String(fCookies.get('ccs')) == '200') ? "Do you wanna switch to break?" : "Do you wanna switch to flow?",
                 text: 'Time will be not record. Click Stop button to record time and switch',
                 icon: 'warning',
                 confirmButtonText: 'switch',
@@ -287,7 +291,7 @@ $(document).ready(function() {
                 } else if (result.isConfirmed) {
 
                     if ($('.clock-toggle-inp').is(':checked')) {
-                        Cookies.set('fflow', 400)
+                        fCookies.set('fflow', 400)
                     }
                     $('.reset').trigger('click');
                     $(document).trigger('flowbreakchange');
@@ -296,7 +300,7 @@ $(document).ready(function() {
             });
         } else {
 
-            Cookies.set('fflow', 400);
+            fCookies.set('fflow', 400);
             $(document).trigger('flowbreakchange');
 
 
@@ -305,7 +309,7 @@ $(document).ready(function() {
     })
 
 
-    if (String(Cookies.get('ccs')) != '200')
+    if (String(fCookies.get('ccs')) != '200')
         $('.clock-toggle-inp').prop('checked', true);
 
     else
@@ -323,9 +327,9 @@ $(document).ready(function() {
             change the text() of theme-value \n
         */
         let theme = $(this).attr('theme');
-        Cookies.set('cth', theme);
+        fCookies.set('cth', theme);
 
-        if (String(Cookies.get('ccs')) != '200') {
+        if (String(fCookies.get('ccs')) != '200') {
             Swal.fire({
                 customClass: {
                     popup: 'popup-text-color',

@@ -3,6 +3,10 @@ import Cookies from 'js-cookie';
 export default function custom_break() {
     $(document).ready(function() {
 
+        // Cookies settings
+        let domain_name = 'localhost';
+        const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
+
         // runner config
         let runner_config = {
             milliseconds: false,
@@ -42,7 +46,7 @@ export default function custom_break() {
 
 
             $(".clock-container").delegate('#runner', 'click', function() {
-                if (String(Cookies.get('ccs')) == '400') {
+                if (String(fCookies.get('ccs')) == '400') {
                     Swal.fire({
                         customClass: {
                             popup: 'popup-text-color',

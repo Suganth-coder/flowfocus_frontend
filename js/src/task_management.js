@@ -13,6 +13,10 @@ $(document).ready(function() {
 
      */
 
+    // Cookies settings
+    let domain_name = 'localhost';
+    const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
+
     let schema = {
         stores: [{
             name: "tasks",
@@ -137,7 +141,7 @@ $(document).ready(function() {
                     // displaying the selected div from cookies
                     $('.task-id-div').each(function(index, obj) {
 
-                        if (String(Cookies.get('cst')) == String($(this).attr('task_id'))) {
+                        if (String(fCookies.get('cst')) == String($(this).attr('task_id'))) {
                             $(this).css('background', 'black');
                             $('.clock-current-task-div').text($(this).find('.task-name').val());
                         }
@@ -175,7 +179,7 @@ $(document).ready(function() {
                 });
 
                 // Removing the cst cookie if selected
-                if (String(task_id) == String(Cookies.get('cst')))
+                if (String(task_id) == String(fCookies.get('cst')))
                     Cookies.remove('cst')
 
                 if (String($('.clock-current-task-div').attr('task_id')) == String(task_id))
@@ -231,7 +235,7 @@ $(document).ready(function() {
             });
 
             $('.clock-current-task-div').text(task_name).attr('task_id', task_id);
-            Cookies.set('cst', task_id, { sameSite: 'strict' })
+            fCookies.set('cst', task_id, { sameSite: 'strict' })
         });
 
         // task synchornization
@@ -247,7 +251,7 @@ $(document).ready(function() {
                 3. Else show dialog box
             */
 
-            let task_id = Cookies.get('cst');
+            let task_id = fCookies.get('cst');
 
             if (task_id != undefined) {
 
@@ -259,12 +263,12 @@ $(document).ready(function() {
                         flowtime = val,
                         breaktime = "00:00:00";
 
-                    if (String(Cookies.get('ccs')) != '200') {
+                    if (String(fCookies.get('ccs')) != '200') {
                         let info = $('#runner').runner('info');
                         breaktime = info.settings.format(info.settings.startAt);
                         flowtime = "00:00:00";
 
-                        if (String(Cookies.get('fflow')) == '200')
+                        if (String(fCookies.get('fflow')) == '200')
                             current_flow = current_flow - 1;
                     }
 
@@ -275,7 +279,7 @@ $(document).ready(function() {
                                     popup: 'popup-text-color',
                                 },
                                 title: 'Not yet Started',
-                                text: (String(Cookies.get('ccs')) == '200') ? "Flowtime not yet started" : "Breaktime not yet started",
+                                text: (String(fCookies.get('ccs')) == '200') ? "Flowtime not yet started" : "Breaktime not yet started",
                                 icon: 'warning',
                                 confirmButtonText: 'okay',
                                 didOpen: () => {
@@ -295,7 +299,7 @@ $(document).ready(function() {
 
                         if (record != undefined) {
                             if (current_flow in record['flow_log']) {
-                                if (String(Cookies.get('ccs')) != '200')
+                                if (String(fCookies.get('ccs')) != '200')
                                 // breaktime
                                     record['flow_log'][current_flow]['breaktime'] = breaktime;
                                 else
@@ -309,7 +313,7 @@ $(document).ready(function() {
 
                     })).then(function() {
 
-                        if (String(Cookies.get('ccs')) == "200") {
+                        if (String(fCookies.get('ccs')) == "200") {
 
                             // if flow
                             put_data.done(function(key) {
@@ -348,8 +352,8 @@ $(document).ready(function() {
                                     }
 
                                     // Switch to break
-                                    Cookies.set('fflow', 200);
-                                    Cookies.set('ccs', 400);
+                                    fCookies.set('fflow', 200);
+                                    fCookies.set('ccs', 400);
                                     $('.clock-toggle-inp').prop('checked', true);
 
                                     $(document).trigger('flowbreakchange', break_time);
@@ -365,8 +369,8 @@ $(document).ready(function() {
 
                         } else {
 
-                            Cookies.set('fflow', 400);
-                            Cookies.set('ccs', 200);
+                            fCookies.set('fflow', 400);
+                            fCookies.set('ccs', 200);
                             $('.clock-toggle-inp').prop('checked', false);
 
                             $(document).trigger('flowbreakchange');

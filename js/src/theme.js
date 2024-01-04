@@ -6,8 +6,13 @@ export default function load_theme() {
         1. check ccs, if break load red, else load the specific themes
     */
 
-    let ccs = String(Cookies.get('ccs')),
-        cth = String(Cookies.get('cth'));
+    // Cookies settings
+    let domain_name = 'localhost';
+    const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
+
+
+    let ccs = String(fCookies.get('ccs')),
+        cth = String(fCookies.get('cth'));
 
     let circle_halo = '#2B3E5B',
         start_src = './assets/image/start.svg',
