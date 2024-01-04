@@ -114,12 +114,25 @@ $(document).ready(function() {
 
         if (ccs == "200") {
 
+            let cth = Cookies.get('cth'),
+                from_color = '#54B4F3',
+                to_color = '#418DEC';
+            if (cth != 'os') {
+
+                if (cth == 'fg') {
+                    from_color = '#4a6741';
+                    to_color = '#3f5a36';
+                } else if (cth == 'ys') {
+                    from_color = '#e1af47';
+                    to_color = '#d39b22';
+                }
+            }
 
             // reset of the bar
             bar.animate(1, {
-                from: { color: '#54B4F3' },
-                to: { color: '#418DEC' },
-                duration: 3600000
+                from: { color: from_color },
+                to: { color: to_color },
+                duration: 3600
             }, function() {
 
                 if ($('#runner').runner('info').running == true) {
@@ -190,11 +203,13 @@ $(document).ready(function() {
         else {
 
             let cth = Cookies.get('cth');
+            let src = "./assets/image/start.svg";
 
             if (cth != "os")
-                src = (cth == "fs") ? "./assets/image/start-green.svg" : "./assets/image/start-yellow.svg";
-            else
-                $(".pause-continue-img").attr("src", "./assets/image/start.svg");
+                src = (cth == "fg") ? "./assets/image/start-green.svg" : "./assets/image/start-yellow.svg";
+
+            console.log('clicking pause');
+            $(".pause-continue-img").attr("src", src);
 
         }
 
