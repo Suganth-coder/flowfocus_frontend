@@ -136,7 +136,7 @@ $(document).ready(function() {
             bar.animate(1, {
                 from: { color: from_color },
                 to: { color: to_color },
-                duration: 3600
+                duration: 3600000,
             }, function() {
 
                 if ($('#runner').runner('info').running == true) {

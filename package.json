@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "build": "webpack",
-        "obfuscator": "javascript-obfuscator"
+        "obfuscator": "cd js/src/ && javascript-obfuscator ./ --output ../obs/"
     },
     "repository": {
         "type": "git",

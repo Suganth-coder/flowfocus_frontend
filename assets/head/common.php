@@ -7,6 +7,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 
 <script src="./node_modules/jquery.runner/build/jquery.runner-min.js"></script>
 <script src="./node_modules/progressbar.js/dist/progressbar.min.js"></script>

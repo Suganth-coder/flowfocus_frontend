@@ -1,24 +1,25 @@
 const path = require('path');
 
 module.exports = [{
-        entry: ['./js/src/index-obfuscated.js', './js/src/getstarted-obfuscated.js', './js/src/feedback-obfuscated.js'],
+        entry: ['./js/obs/index.js', './js/obs/getstarted.js', './js/obs/feedback.js'],
         output: {
             filename: 'index.js',
-            path: path.resolve(__dirname, 'js'),
+            path: path.resolve(__dirname, 'js/dist'),
         },
     },
     {
-        entry: './js/src/common-obfuscated.js',
+        entry: './js/obs/common.js',
         output: {
             filename: 'common.js',
-            path: path.resolve(__dirname, 'js'),
+            path: path.resolve(__dirname, 'js/dist'),
         },
     },
     {
-        entry: './js/src/task_management-obfuscated.js',
+        entry: './js/obs/task_management.js',
         output: {
-            filename: 'task_management.js',
-            path: path.resolve(__dirname, 'js'),
+            filename: 'b1.js',
+            path: path.resolve(__dirname, 'js/dist'),
         },
     }
+
 ];

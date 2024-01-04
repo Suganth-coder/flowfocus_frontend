@@ -1,5 +1,5 @@
-import DataTable from 'datatables.net-dt';
 import 'ydn.db';
+
 
 export default function table_show(db) {
     $(document).ready(function() {
