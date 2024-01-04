@@ -13,3 +13,5 @@
 
 <link rel="stylesheet" href="./css/table.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<link rel="icon" href= "./assets/image/logo.png" type="image/x-icon">
