@@ -4,7 +4,7 @@ export default function custom_break() {
     $(document).ready(function() {
 
         // Cookies settings
-        let domain_name = 'localhost';
+        let domain_name = 'flowfocus.io';
         const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
 
         // runner config

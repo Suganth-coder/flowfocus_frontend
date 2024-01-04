@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 $(document).ready(function() {
 
     // Cookies settings
-    let domain_name = 'localhost';
+    let domain_name = 'flowfocus.io';
     const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
 
     let base_url = "http://localhost:8081/";
