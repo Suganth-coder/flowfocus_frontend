@@ -23,6 +23,7 @@ Cookies info
 */
 $(document).ready(function() {
 
+    $('.page-loader').hide();
     // Cookies settings
     let domain_name = 'flowfocus.io';
     const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
