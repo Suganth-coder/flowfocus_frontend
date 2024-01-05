@@ -1,2 +1,4 @@
 .phoeni/
 node_modules/
+js/obfus
+js/dist

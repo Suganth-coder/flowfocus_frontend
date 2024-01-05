@@ -1,21 +1,21 @@
 const path = require('path');
 
 module.exports = [{
-        entry: ['./js/obs/index.js', './js/obs/getstarted.js', './js/obs/feedback.js'],
+        entry: ['./js/obfus/index.js', './js/obfus/getstarted.js', './js/obfus/feedback.js'],
         output: {
             filename: 'index.js',
             path: path.resolve(__dirname, 'js/dist'),
         },
     },
     {
-        entry: './js/obs/common.js',
+        entry: './js/obfus/common.js',
         output: {
             filename: 'common.js',
             path: path.resolve(__dirname, 'js/dist'),
         },
     },
     {
-        entry: './js/obs/task_management.js',
+        entry: './js/obfus/task_management.js',
         output: {
             filename: 'b1.js',
             path: path.resolve(__dirname, 'js/dist'),
