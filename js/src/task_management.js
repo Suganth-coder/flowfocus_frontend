@@ -100,7 +100,7 @@ $(document).ready(function() {
 
                 put_data.fail(function(e) {
                     // TODO: change to alert
-                    console.log(e);
+                    // console.log(e);
                 });
 
 
@@ -153,7 +153,7 @@ $(document).ready(function() {
 
             },
             function(e) {
-                console.log("error: ", e);
+                // console.log("error: ", e);
             });
 
         // deleting the task div
@@ -171,11 +171,11 @@ $(document).ready(function() {
 
                 parent.remove();
                 db.remove("tasks", parseInt(task_id)).fail(function(e) {
-                    console.log(e);
+                    // console.log(e);
                 });
 
                 db.remove("report", parseInt(task_id)).fail(function(e) {
-                    console.log(e);
+                    // console.log(e);
                 });
 
                 // Removing the cst cookie if selected
@@ -207,7 +207,7 @@ $(document).ready(function() {
                         record['task_description'] = value;
 
                     db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
-                        console.log(e);
+                        // console.log(e);
                     });
                 };
 
@@ -327,7 +327,7 @@ $(document).ready(function() {
                                         record['flow'] = current_flow;
                                         // updating task db
                                         db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
-                                            console.log(e);
+                                            // console.log(e);
                                         });
                                     }
 
@@ -363,7 +363,7 @@ $(document).ready(function() {
                             });
 
                             put_data.fail(function(e) {
-                                console.log(e);
+                                // console.log(e);
                             });
 
 

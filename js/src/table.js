@@ -26,7 +26,7 @@ export default function table_show(db) {
         $(document).delegate('.show-report', 'click', function() {
 
             let task_id = parseInt($(this).parent().find('.task-name').parent().attr('task_id'));
-            console.log(task_id);
+
             Swal.fire({
                 customClass: {
                     popup: 'table-show-dialogue',

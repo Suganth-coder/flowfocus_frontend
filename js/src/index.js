@@ -23,6 +23,7 @@ Cookies info
 */
 $(document).ready(function() {
 
+    window.console.log = () => {};
     $('.page-loader').hide();
     // Cookies settings
     let domain_name = 'flowfocus.io';
@@ -213,7 +214,6 @@ $(document).ready(function() {
             if (cth != "os")
                 src = (cth == "fg") ? "./assets/image/start-green.svg" : "./assets/image/start-yellow.svg";
 
-            console.log('clicking pause');
             $(".pause-continue-img").attr("src", src);
 
         }
