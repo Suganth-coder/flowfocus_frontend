@@ -7,7 +7,8 @@ export default function load_theme() {
     */
 
     // Cookies settings
-    let domain_name = 'flowfocus.io';
+    let domain_name = COOKIE_DOMAIN_NAME;
+
     const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
 
 

@@ -4,8 +4,9 @@
     "description": "This package is consists of flowfocus frontend code",
     "private": true,
     "scripts": {
-        "build": "webpack",
-        "obfuscator": "cd js/src/ && javascript-obfuscator ./ --output ../obfus/ --split-strings true --string-array true"
+        "build": "webpack --mode=production",
+        "obfuscator": "cd js/src/ && javascript-obfuscator ./ --output ../obfus/ --split-strings true --string-array true",
+        "dev": "webpack --mode=development"
     },
     "repository": {
         "type": "git",
