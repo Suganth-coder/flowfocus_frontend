@@ -6,7 +6,7 @@ $(document).ready(function() {
     let domain_name = 'flowfocus.io';
     const fCookies = Cookies.withAttributes({ path: '/', domain: domain_name, expires: 10 });
 
-    let base_url = "https://flowfocus.io:8080/";
+    let base_url = BASE_URL;
 
     $.get("./assets/templates/get-started.html", function(data) {
         let getStarted = $('<div>').append($.parseHTML(data)).find('.get-started');

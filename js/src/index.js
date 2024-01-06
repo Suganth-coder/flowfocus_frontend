@@ -23,7 +23,7 @@ Cookies info
 */
 $(document).ready(function() {
 
-    window.console.log = () => {};
+    // window.console.log = () => {};
     $('.page-loader').hide();
     // Cookies settings
     let domain_name = 'flowfocus.io';

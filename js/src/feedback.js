@@ -3,10 +3,11 @@ $(document).ready(function() {
 
     $.get("./assets/templates/feedback.html", function(data) {
 
+
         let getStarted = $('<div>').append($.parseHTML(data)).find('.feedback');
         getStarted.find('.fb-loading').hide();
 
-        let base_url = "https://flowfocus.io:8080/";
+        let base_url = BASE_URL;
 
         let showStarted = () => {
             Swal.fire({
