@@ -228,7 +228,12 @@ $(document).ready(function() {
     $('.pause-reset').delegate('.reset', 'click', function() {
         // TODO: to show blur dialogue box
         $('#runner').runner('reset', true);
-        bar.set(0.0);
+
+        if (String(fCookies.get('ccs', 400)) == '400')
+            bar.set(1);
+
+        else
+            bar.set(0);
         $('.start-div').css({ "opacity": 1.0, "pointer-events": "auto" });
         $('.pause-reset').addClass('d-none');
 
