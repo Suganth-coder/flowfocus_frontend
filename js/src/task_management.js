@@ -236,7 +236,7 @@ $(document).ready(function() {
             });
 
             $('.clock-current-task-div').text(task_name).attr('task_id', task_id);
-            fCookies.set('cst', task_id);
+            fCookies.set('cst', task_id, { sameSite: 'strict' })
         });
 
         // task synchornization
