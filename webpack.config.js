@@ -43,8 +43,9 @@ module.exports = [{
             path: path.resolve(__dirname, 'js/dist'),
         },
         plugins: [new webpack.DefinePlugin({
-            BASE_URL: JSON.stringify("http://localhost:8181/"),
-            COOKIE_DOMAIN_NAME: JSON.stringify("localhost")
+            BASE_URL: JSON.stringify(BASE_API_URL),
+            COOKIE_DOMAIN_NAME: JSON.stringify(COOKIE_DOMAIN),
+            PROD: PROD
         })]
     },
 
