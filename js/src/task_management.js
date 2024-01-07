@@ -274,6 +274,7 @@ $(document).ready(function() {
                     }
 
                     if (finished == '400') {
+                        console.log($('#runner').runner('info'));
                         if ($('#runner').runner('info').running == false) {
                             Swal.fire({
                                 customClass: {

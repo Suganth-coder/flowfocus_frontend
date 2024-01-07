@@ -78,6 +78,6 @@ export default function load_theme() {
 
     $('.stop-color-1-svg, .stop-color-2-svg').each(function() {
         $(this).attr('stop-color', stop_border);
-    })
+    });
 
 };
