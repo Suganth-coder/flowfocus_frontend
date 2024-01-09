@@ -341,8 +341,9 @@
         }
         
         #theclockdiv {
-            height: 500px;
+            height: 600px;
             width: 500px;
+            transform: scale(1.1) !important;
         }
         
         @media only screen and (max-width: 500px) {

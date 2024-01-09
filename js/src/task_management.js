@@ -66,7 +66,7 @@ $(document).ready(function() {
         let taskDiv = $('<div>').append($.parseHTML(data)).find('#taskholder');
 
         // adding the task
-        $('.add_task_btn').click(function() {
+        $(document).delegate('.add_task_btn', 'click', function() {
             let task_name = $('.task_name_inp').val();
             let task_length = task_name.length;
             let default_task_desp = null;
@@ -97,6 +97,12 @@ $(document).ready(function() {
 
                     // TODO: load_theme on certain condition
                     load_theme();
+
+                    // automatic selection of task if there is none
+                    if ($('.task-container').attr('new_task') == "true") {
+                        $('.task-container').attr('new_task', "false");
+                        $('.task-card').trigger('click');
+                    }
                 })
 
                 put_data.fail(function(e) {
@@ -127,6 +133,9 @@ $(document).ready(function() {
 
         // displaying task div
         db.executeSql('SELECT * FROM tasks').then(function(results) {
+
+                if (results.length == 0)
+                    $('.task-container').attr('new_task', "true");
 
                 $.when(
                     $.each(results, function(k, v) {
@@ -407,7 +416,12 @@ $(document).ready(function() {
             }
         });
 
-
+        // Enter key is pressed
+        $('.task_name_inp').on('keydown', function(e) {
+            if (e.code === "Enter") { //checks whether the pressed key is "Enter"
+                $('.add_task_btn').trigger('click');
+            };
+        });
     }, 'text');
 
 });
