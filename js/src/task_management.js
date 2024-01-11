@@ -4,6 +4,35 @@ import Cookies from 'js-cookie';
 import load_theme from './theme.js';
 import table_show from './table.js';
 
+function format_time(s) {
+    var t = parseInt(s);
+    var hour = Math.floor(t / 3600000);
+    t = t - hour * 3600000;
+    var min = Math.floor(t / 60000);
+    t = t - min * 60000;
+    var sec = Math.floor(t / 1000);
+    t = t - sec * 1000;
+
+
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    if (min < 10) {
+        min = "0" + min;
+    }
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+    if (t < 10) {
+        t = "00" + t;
+    } else if (t < 100) {
+        t = "0" + t;
+    }
+
+    return hour + ":" + min + ":" + sec;
+
+}
+
 $(document).ready(function() {
     /* 
      *** Task CURD Operations ***  
@@ -250,7 +279,7 @@ $(document).ready(function() {
 
         // task synchornization
         $('.stop-clock').click(function() {
-            let c_time = $('#runner').runner('info').time;
+            let c_time = $('#runner').attr('current_time');
             $(document).trigger('stopclockclick', ['400', c_time]);
         })
 
@@ -274,8 +303,7 @@ $(document).ready(function() {
                         breaktime = "00:00:00";
 
                     if (String(fCookies.get('ccs')) != '200') {
-                        let info = $('#runner').runner('info');
-                        breaktime = info.settings.format(info.settings.startAt);
+                        breaktime = format_time($("#runner").attr('startAt'));
                         flowtime = "00:00:00";
 
                         if (String(fCookies.get('fflow')) == '200')
@@ -283,8 +311,7 @@ $(document).ready(function() {
                     }
 
                     if (finished == '400') {
-                        console.log($('#runner').runner('info'));
-                        if ($('#runner').runner('info').running == false) {
+                        if ($('#runner').attr('running') == "false") {
                             Swal.fire({
                                 customClass: {
                                     popup: 'popup-text-color',
@@ -350,8 +377,9 @@ $(document).ready(function() {
                                       */
 
                                     let break_time = 300000;
-                                    if (c_time != null) {
+                                    if (c_time != null || c_time != undefined) {
                                         // TODO: calculate custom break
+                                        c_time = parseInt(c_time);
                                         if (c_time >= 0 && c_time <= 1500000)
                                             break_time = 300000;
                                         else if (c_time > 1500000 && c_time <= 3000000)

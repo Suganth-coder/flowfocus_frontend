@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie';
 import load_theme from './theme.js';
 import custom_break from './custom-break.js';
+import Timer from "../lib/easytimer.js";
+
 /*
 
 Cookies info
@@ -21,6 +23,35 @@ Cookies info
    * false --> 400
 
 */
+function format_time(s) {
+    var t = parseInt(s);
+    var hour = Math.floor(t / 3600000);
+    t = t - hour * 3600000;
+    var min = Math.floor(t / 60000);
+    t = t - min * 60000;
+    var sec = Math.floor(t / 1000);
+    t = t - sec * 1000;
+
+
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    if (min < 10) {
+        min = "0" + min;
+    }
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+    if (t < 10) {
+        t = "00" + t;
+    } else if (t < 100) {
+        t = "0" + t;
+    }
+
+    return hour + ":" + min + ":" + sec;
+
+}
+
 $(document).ready(function() {
 
     if (PROD)
@@ -42,6 +73,7 @@ $(document).ready(function() {
         fCookies.set('ift', 200)
 
     $('#report_log').hide();
+    $('#runner').attr('running', false);
 
     /*
 
@@ -56,51 +88,20 @@ $(document).ready(function() {
         duration: 3600000,
         step: function(state, bar, attachment) {
             bar.path.setAttribute('stroke', state.color);
-            let c_time = $('#runner').runner('info').time;
-
-
         },
         trailColor: '#D5E6FA',
         trailWidth: 9,
         svgStyle: null
     });
 
-    let runner_config = {
-        milliseconds: false,
-        format: function(s, so) {
-            var t = parseInt(s);
-            var hour = Math.floor(t / 3600000);
-            t = t - hour * 3600000;
-            var min = Math.floor(t / 60000);
-            t = t - min * 60000;
-            var sec = Math.floor(t / 1000);
-            t = t - sec * 1000;
 
+    const timer = new Timer();
+    var timerConfig = { precision: 'seconds', startValues: { seconds: 0 }, countdown: false };
 
-            if (hour < 10) {
-                hour = "0" + hour;
-            }
-            if (min < 10) {
-                min = "0" + min;
-            }
-            if (sec < 10) {
-                sec = "0" + sec;
-            }
-            if (t < 10) {
-                t = "00" + t;
-            } else if (t < 100) {
-                t = "0" + t;
-            }
+    $("#runner").text(timer.getTimeValues().toString());
 
-            return hour + ":" + min + ":" + sec;
-
-        }
-
-    };
-
-    $('#runner').runner(runner_config);
-    // runner finished
-    $('#runner').on('runnerFinish', function() {
+    // adding event listeners
+    timer.addEventListener('stopped', function(e) {
 
         if (String(fCookies.get('ccs')) == '400') {
             $(this).uiSound({
@@ -108,10 +109,32 @@ $(document).ready(function() {
             });
 
             $(document).trigger('stopclockclick', ['200']);
+            $('#runner').attr('running', e.detail.timer.isRunning());
+
         }
 
     });
 
+    let event_handler = (e) => {
+        $('#runner').attr('running', e.detail.timer.isRunning());
+    }
+
+    ["started", "reset", "paused"].forEach((event) => {
+        timer.addEventListener(event, event_handler);
+    })
+
+    // timer on secondsUpdated
+    timer.addEventListener('secondsUpdated', function(e) {
+        let values = timer.getTimeValues().toString();
+        $('#runner').html(values).attr('current_time', timer.getTimeValues().seconds * 1000);
+        $('#runner').attr('startAt', timerConfig.startValues.seconds);
+
+        // TODO: Adding flowtime or break time tag
+        document.title = values;
+    });
+
+
+    // clicking start button
     $('.start-div').delegate('.start', 'click', function() {
 
         bar.trail.setAttribute('stroke', '#D5E6FA');
@@ -144,7 +167,7 @@ $(document).ready(function() {
                 duration: 3600000,
             }, function() {
 
-                if ($('#runner').runner('info').running == true) {
+                if (timer.isRunning()) {
                     bar.set(0);
                     setTimeout(function() {
                         $('.start').trigger('click');
@@ -152,11 +175,10 @@ $(document).ready(function() {
                 }
             });
 
-
         } else {
 
             bar.animate(-0.0, {
-                duration: runner_config.startAt,
+                duration: timerConfig.startValues.seconds * 1000,
                 from: {
                     color: '#FF5454'
                 },
@@ -169,7 +191,8 @@ $(document).ready(function() {
             });
         }
 
-        $('#runner').runner('start');
+        timer.stopWithoutEvent();
+        timer.start(timerConfig);
         $('.pause-reset').removeClass('d-none');
         $('.start-div').css({ "opacity": 0.0, "pointer-events": "none" });
 
@@ -181,29 +204,14 @@ $(document).ready(function() {
 
     })
 
-    $('.pause-reset').delegate('.continue', 'click', function() {
-
-        $(this).uiSound({
-            play: "keyup"
-        });
-
-        $('#runner').runner('start');
-        bar.resume();
-
-        // changing continue to pause
-        $(".pause-continue-img").attr("src", "./assets/image/pause.svg");
-        $('.continue').removeClass("continue").addClass("pause");
-
-    })
-
-
+    // clicking pause button
     $('.pause-reset').delegate('.pause', 'click', function() {
 
         $(this).uiSound({
             play: "keyup"
         });
 
-        $('#runner').runner('stop');
+        timer.pause();
         bar.pause();
 
         if (String(fCookies.get('ccs', 400)) == '400')
@@ -225,9 +233,30 @@ $(document).ready(function() {
 
     })
 
+    // clicking continue button
+    $('.pause-reset').delegate('.continue', 'click', function() {
+
+        $(this).uiSound({
+            play: "keyup"
+        });
+
+        timer.start();
+        bar.resume();
+
+        // changing continue to pause
+        $(".pause-continue-img").attr("src", "./assets/image/pause.svg");
+        $('.continue').removeClass("continue").addClass("pause");
+
+    })
+
+
+    // clicking reset button
     $('.pause-reset').delegate('.reset', 'click', function() {
         // TODO: to show blur dialogue box
-        $('#runner').runner('reset', true);
+        timer.reset();
+        timer.pause();
+        $("#runner").text(timer.getTimeValues().toString());
+
 
         if (String(fCookies.get('ccs', 400)) == '400')
             bar.set(1);
@@ -246,12 +275,13 @@ $(document).ready(function() {
         if ($('.clock-toggle-inp').is(':checked')) {
             fCookies.set('ccs', 400);
 
-            runner_config.countdown = true;
-            runner_config.startAt = (countdown == null) ? 300000 : parseInt(countdown);
-            runner_config.stopAt = 0;
+            timerConfig.countdown = true;
+            timerConfig.startValues.seconds = (countdown == null) ? 300 : parseInt(countdown) / 1000;
+
 
             bar.set(1.0);
-            $('#runner').runner(runner_config);
+            // TODO: change runner value in formatted time
+            console.log(timerConfig);
             $(document).prop('title', 'BreakTime 💔');
 
 
@@ -259,15 +289,16 @@ $(document).ready(function() {
             fCookies.set('ccs', 200);
 
             bar.set(0);
-            runner_config.countdown = false;
-            runner_config.startAt = 0;
-            runner_config.stopAt = null;
-            $('#runner').runner(runner_config);
+
+            timerConfig.countdown = false;
+            timerConfig.startValues.seconds = 0;
+            // TODO: change runner value in formatted time
+
             $(document).prop('title', 'FlowTime');
 
         }
 
-
+        $("#runner").text(format_time(timerConfig.startValues.seconds * 1000));
         load_theme();
 
     });
@@ -279,7 +310,7 @@ $(document).ready(function() {
             play: "error"
         });
 
-        if ($('#runner').runner('info').running == true) {
+        if (timer.isRunning()) {
             Swal.fire({
                 customClass: {
                     popup: 'popup-text-color',
