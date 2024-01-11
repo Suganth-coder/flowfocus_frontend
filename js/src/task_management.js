@@ -303,7 +303,7 @@ $(document).ready(function() {
                         breaktime = "00:00:00";
 
                     if (String(fCookies.get('ccs')) != '200') {
-                        breaktime = format_time($("#runner").attr('startAt'));
+                        breaktime = format_time($("#runner").attr('startat') * 1000);
                         flowtime = "00:00:00";
 
                         if (String(fCookies.get('fflow')) == '200')

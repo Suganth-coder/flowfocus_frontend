@@ -129,8 +129,9 @@ $(document).ready(function() {
         $('#runner').html(values).attr('current_time', timer.getTimeValues().seconds * 1000);
         $('#runner').attr('startAt', timerConfig.startValues.seconds);
 
-        // TODO: Adding flowtime or break time tag
-        document.title = values;
+
+        document.title = $('.clock-current-task-div').text() + "- " + values;
+
     });
 
 
@@ -281,7 +282,6 @@ $(document).ready(function() {
 
             bar.set(1.0);
             // TODO: change runner value in formatted time
-            console.log(timerConfig);
             $(document).prop('title', 'BreakTime 💔');
 
 
