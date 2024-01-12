@@ -52,6 +52,26 @@ function format_time(s) {
 
 }
 
+function notify(msg) {
+
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+    } else if (Notification.permission === "granted") {
+        const notification = new Notification(msg);
+
+    } else if (Notification.permission !== "denied") {
+
+        Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+                const notification = new Notification(msg);
+
+            }
+        });
+    }
+
+}
+
+
 $(document).ready(function() {
 
     if (PROD)
@@ -105,33 +125,56 @@ $(document).ready(function() {
 
         if (String(fCookies.get('ccs')) == '400') {
             $(this).uiSound({
-                play: "finished"
+                play: "break_end"
             });
 
             $(document).trigger('stopclockclick', ['200']);
             $('#runner').attr('running', e.detail.timer.isRunning());
+            notify($('.clock-current-task-div').text() + " Break Finished💔");
 
         }
 
     });
 
+    // reseting
+    timer.addEventListener("reset", function(e) {
+        $('#runner').attr('running', e.detail.timer.isRunning());
+
+        if (String(fCookies.get('ccs')) == '400')
+            $(document).prop('title', 'BreakTime 💔');
+
+        else
+            $(document).prop('title', 'Flowtime');
+    })
+
     let event_handler = (e) => {
         $('#runner').attr('running', e.detail.timer.isRunning());
     }
 
-    ["started", "reset", "paused"].forEach((event) => {
+    ["started", "paused"].forEach((event) => {
         timer.addEventListener(event, event_handler);
     })
 
     // timer on secondsUpdated
     timer.addEventListener('secondsUpdated', function(e) {
-        let values = timer.getTimeValues().toString();
-        $('#runner').html(values).attr('current_time', timer.getTimeValues().seconds * 1000);
+
+        let values = timer.getTimeValues().toString(),
+            seconds = timer.getTimeValues().seconds,
+            current_task_name = $('.clock-current-task-div').text();
+        $('#runner').html(values).attr('current_time', seconds * 1000);
         $('#runner').attr('startAt', timerConfig.startValues.seconds);
 
 
-        document.title = $('.clock-current-task-div').text() + "- " + values;
+        document.title = current_task_name + "- " + values;
 
+        // notifications
+        if ((seconds % 1500) == 0) {
+            $(this).uiSound({
+                play: "notification"
+            });
+            notify(current_task_name + " - " + timer.getTimeValues().minutes + " minutes over!");
+
+        }
     });
 
 

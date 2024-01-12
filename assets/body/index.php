@@ -97,7 +97,7 @@
                 <span class="spa" id="am">FLOW</span>
                 <div class="continr" id="button">
                     <div class="bg"></div>
-                    <div class="ray ray-inner"></div>
+                <div class="ray ray-inner"></div>
                     <div class="ray ray-medium"></div>
                     <div class="ray ray-far"></div>
                     <div class="sun">

@@ -267,3 +267,8 @@
         line-height: normal;
         text-decoration: none;
     }
+    
+    .close-img {
+        margin-left: 80%;
+        cursor: pointer;
+    }

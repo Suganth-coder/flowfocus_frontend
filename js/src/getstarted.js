@@ -24,6 +24,9 @@ $(document).ready(function() {
                 didOpen: () => {
                     const gs_div = Swal.getPopup().querySelector(".get-started");
                     $(gs_div).append(getStarted);
+                    $('.close-img').click(function() {
+                        Swal.close();
+                    })
                 }
             }).then((result) => {
 
