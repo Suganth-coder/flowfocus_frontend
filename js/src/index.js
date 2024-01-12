@@ -159,7 +159,7 @@ $(document).ready(function() {
     timer.addEventListener('secondsUpdated', function(e) {
 
         let values = timer.getTimeValues().toString(),
-            seconds = timer.getTimeValues().seconds,
+            seconds = timer.getTotalTimeValues().seconds,
             current_task_name = $('.clock-current-task-div').text();
         $('#runner').html(values).attr('current_time', seconds * 1000);
         $('#runner').attr('startAt', timerConfig.startValues.seconds);
@@ -169,6 +169,7 @@ $(document).ready(function() {
 
         // notifications
         if ((seconds % 1500) == 0) {
+
             $(this).uiSound({
                 play: "notification"
             });
@@ -324,7 +325,6 @@ $(document).ready(function() {
 
 
             bar.set(1.0);
-            // TODO: change runner value in formatted time
             $(document).prop('title', 'BreakTime 💔');
 
 
@@ -335,8 +335,6 @@ $(document).ready(function() {
 
             timerConfig.countdown = false;
             timerConfig.startValues.seconds = 0;
-            // TODO: change runner value in formatted time
-
             $(document).prop('title', 'FlowTime');
 
         }

@@ -239,15 +239,19 @@ $(document).ready(function() {
 
 
             db.get('tasks', task_id).always(function(record) {
+
                 if (record != undefined) {
                     if ($(outer_this).hasClass('task-name'))
                         record['task_name'] = value;
                     else
                         record['task_description'] = value;
 
-                    db.put({ name: 'tasks', keyPath: 'task_id' }, record).fail(function(e) {
-                        // console.log(e);
-                    });
+                    db.put({ name: 'tasks', keyPath: 'task_id' }, record).done(function(key) {
+                        if ($(outer_this).hasClass('task-name')) {
+                            $('.clock-current-task-div').text(value);
+                        }
+                    })
+
                 };
 
             });
