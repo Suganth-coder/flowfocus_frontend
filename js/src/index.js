@@ -165,7 +165,7 @@ $(document).ready(function() {
         $('#runner').attr('startAt', timerConfig.startValues.seconds);
 
 
-        document.title = current_task_name + "- " + values;
+        document.title = values + " - " + current_task_name;
 
         // notifications
         if ((seconds % 1500) == 0) {
