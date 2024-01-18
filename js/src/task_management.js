@@ -116,7 +116,7 @@ $(document).ready(function() {
                     new_div.addClass('task-id-' + key);
 
                     new_div.find('.task-desp').val(default_task_desp);
-                    new_div.find('.task-flow-count').attr('current_flow', 0);
+                    new_div.find('.task-flow-count').attr('current_flow', 1);
 
                     new_div.addClass('animate__fadeInDown');
 
