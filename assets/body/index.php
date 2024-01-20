@@ -168,5 +168,17 @@
 
 </div>
 
+<hr class="video-above-hr">
+
+<!-- for video -->
+<div class="flow-video-div">
+
+    <h1 class="f-heading">What is Flowtime Technique?</h1>
+
+    <video class="flow-video" controls>
+    <source src="./assets/videos/flowtime.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+    </video>
+</div>
 
 <a class="border rounded d-inline scroll-to-top feedback-btn" href="#page-top"><p>Feedback</p></i></a>

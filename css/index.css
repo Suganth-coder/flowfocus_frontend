@@ -272,3 +272,37 @@
         margin-left: 90%;
         cursor: pointer;
     }
+    
+    .f-heading {
+        color: #D5E6FA;
+        text-align: center;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    
+    .v-heading {
+        font-size: 30px;
+    }
+    
+    .flow-video {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .flow-video-div {
+        margin: auto;
+        width: 50%;
+    }
+    
+    .flow-video-div h1 {
+        color: white;
+        margin: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .video-above-hr {
+        color: white;
+    }
