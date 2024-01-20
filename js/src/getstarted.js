@@ -25,6 +25,7 @@ $(document).ready(function() {
                     const gs_div = Swal.getPopup().querySelector(".get-started");
                     $(gs_div).append(getStarted);
                     $('.close-img').click(function() {
+                        fCookies.set('ift', 400);
                         Swal.close();
                     })
                 }
@@ -33,7 +34,7 @@ $(document).ready(function() {
                 if (result.isConfirmed) {
                     fCookies.set('ift', 400);
                 }
-            });;
+            });
         }
 
         $(".get-started").click(function() {
