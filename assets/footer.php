@@ -1,6 +1,7 @@
 
 <footer class="text-center bg-dark p-1 mt-1 footer" style="border-top: 1.5px solid var(--bs-secondary-text-emphasis);">
     <div class="container text-white py-2 py-lg-2">
+        
         <p class="text-muted mb-0 p-3"><span style="color: rgba(255, 255, 255, 0.75) ; font-size:14px">Copyright © Phoenitags Innovations 2024 All Rights Reserved</span></p>
         <ul class="list-inline">
             <!-- <li class="list-inline-item me-4"><svg class="bi bi-facebook text-light" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size:20px">
@@ -19,5 +20,7 @@
             </a> -->
 
         </ul>
+
+        <a href="https://www.producthunt.com/posts/flowfocus?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-flowfocus" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=435539&theme=dark" alt="FlowFocus - A&#0032;Productivity&#0032;App&#0032;that&#0032;uses&#0032;FlowTime&#0032;Technique&#0033; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
     </div>
 </footer>
