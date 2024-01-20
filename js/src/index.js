@@ -144,7 +144,7 @@ $(document).ready(function() {
             $(document).prop('title', 'BreakTime 💔');
 
         else
-            $(document).prop('title', 'Flowtime');
+            $(document).prop('title', 'Flowfocus');
     })
 
     let event_handler = (e) => {
@@ -168,14 +168,18 @@ $(document).ready(function() {
         document.title = values + " - " + current_task_name;
 
         // notifications
-        if ((seconds % 1500) == 0) {
+        if (String(fCookies.get('ccs')) == '200') {
+            if ((seconds % 1500) == 0) {
 
-            $(this).uiSound({
-                play: "notification"
-            });
-            notify(current_task_name + " - " + timer.getTimeValues().minutes + " minutes over!");
+                $(this).uiSound({
+                    play: "notification"
+                });
+                notify(current_task_name + " - " + timer.getTimeValues().minutes + " minutes over!");
+
+            }
 
         }
+
     });
 
 
@@ -259,7 +263,7 @@ $(document).ready(function() {
         timer.pause();
         bar.pause();
 
-        if (String(fCookies.get('ccs', 400)) == '400')
+        if (String(fCookies.get('ccs')) == '400')
             $(".pause-continue-img").attr("src", "./assets/image/start-red.svg");
 
         else {
@@ -335,7 +339,7 @@ $(document).ready(function() {
 
             timerConfig.countdown = false;
             timerConfig.startValues.seconds = 0;
-            $(document).prop('title', 'FlowTime');
+            $(document).prop('title', 'Flowfocus');
 
         }
 

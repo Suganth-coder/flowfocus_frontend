@@ -1,5 +1,5 @@
 
-<meta name="keywords" content="flowfocus, flowtime, technique, productivity, flowfocus.io">
+<meta name="keywords" content="flowfocus, flowfocus.io, flowtime, technique, productivity">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
