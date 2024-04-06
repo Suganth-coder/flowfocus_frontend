@@ -34,11 +34,18 @@
 
 [Framework Link](https://github.com/Suganth-coder/phoeni_php)
 
-    phoeni init simple
+    phoeni init -y
+
+    
+ Note: -y is used for silent initilation   
+ 
+#### Obfuscating JS Code
+
+    npm run obfuscator
 
 #### Building NPM Packages
 
-    npm build
+    npm run build
     
 
 
