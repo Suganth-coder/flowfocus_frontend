@@ -37,8 +37,12 @@
     phoeni init -y
 
     
- Note: -y is used for silent initilation   
- 
+ Note: -y is used for silent initilation  
+
+#### Installing NPM Packages
+
+    npm install
+
 #### Obfuscating JS Code
 
     npm run obfuscator
